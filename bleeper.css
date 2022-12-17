@@ -555,14 +555,14 @@ button {
     background: rgb(30, 30, 30);
     box-shadow: 0 0 5px black;
     margin: 0.5rem; 
-    padding: 1rem;
+    padding: 1rem 1rem 0 1rem;
 }
 
 .bleep_content {
     border-radius: 50%;
 }
 
-.bleep_profileImage {
+.profileImage {
     height: 4rem;
     width: 4rem;
     font-size: 0;
@@ -570,7 +570,7 @@ button {
     background: rgb(20, 20, 20);
 }
 
-.bleep_profileInfo {
+.infoContainer {
     display: grid;
     width: 100%;
     height: 4rem;
@@ -579,26 +579,26 @@ button {
 }
 
 
-.bleep_profileInfo_name {
+.profileName {
     font-weight: bold;
     overflow: clip;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.bleep_profileInfo_username {
+.profileUsername {
     color:rgb(90, 90, 90);
     overflow: clip;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
-.bleep_profileInfo_timestamp {
+.timestamp {
     grid-row: 3;
     font-weight: 200;
 }
 
-.bleep_topRightButton {
+.topRightButton {
     z-index: 99;
     position: absolute;
     top: 0;
@@ -607,14 +607,14 @@ button {
 }
 
 
-.bleep_message {
+.text {
     grid-column: 1/ span 2;
     grid-row: 2;
 }
 
 /* --------bleep REPORT OPTIONS-------- */
 
-.bleep_topRight {
+.topRightPopUp {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -628,12 +628,12 @@ button {
     box-shadow: 0 0 5px black;
 }
 
-.bleep_topRight_blockButton {
+.blockButton {
     margin-top: 2.5rem;
     padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
-.bleep_topRight_reportButton {
+.reportButton {
     padding: 0.5rem 1rem 1rem 1rem;
 }
 
@@ -663,41 +663,20 @@ button {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.action {
+.actionbar button {
     display: flex;
     justify-content: center;
     font-size: 0.8rem;
     font-weight: bold;
-    padding: 1rem 1rem 0;
+    padding: 1rem 1rem 1rem;
 }
 
-.action_shareButton {
-    position: relative;
-}
-
-.action label {
+.actionbar label {
     text-align: end;
 }
 
-.action img {
+.actionbar img {
     margin-left: 0.25rem;
-}
-
-.shareOptions {
-    z-index: 101;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    position: absolute;
-    box-sizing: border-box;
-    bottom: 0;
-    left: 0;
-    height: 3rem;
-    padding: 0 1rem 1rem 1rem;
-    width: 100%;
-    border-radius: 0.5rem;
-    outline: 0.1rem solid rgb(50, 50, 50);
-    background: rgb(30, 30, 30);
-    box-shadow: 0 0 10px black;
 }
 
 /* --------TOGGLES-------- */

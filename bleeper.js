@@ -1732,6 +1732,49 @@ let i = 0; // numerical value tied to bleep number
 
 let targetUsername;
 
+function bleepTemplate() {
+return `<div class="bleep" id=bleep${i}>
+    <img class="profileImage" alt="Profile Image">
+    <header class="infoContainer">
+        <h5 class="profileName"></h5>
+        <h6 class="profileUsername">@</h6>
+        <time class="timestamp"></time>
+        <button class="topRightButton"><img src="svgs/report_off.svg"></button>
+    </header>
+    <div class="topRightPopUp off">
+        <button class="blockButton">Block</button>
+        <button class="reportButton">Report</button>
+    </div>
+
+    <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis atque, molestias laudantium omnis suscipit cumque delectus, tempore doloribus tempora ut nemo, sapiente mollitia! Sit, facilis.</p>
+    
+    <div class="actionbar">
+        <button class="shareButton">
+            <label for="shares" class="shareCounter"></label>
+            <img src="svgs/share_off.svg" class="shareButtonImage">
+        </button>
+
+        <button class="commentButton">
+            <label for="comments" class="commentCounter"></label>
+            <img src="svgs/comment_off.svg" class="commentButtonImage">
+        </button>
+
+        <button class="likeButton">
+            <label for="likes" class="likeCounter"></label>
+            <img src="svgs/like_off.svg" class="likeButtonImage">
+        </button>
+    </div>
+</div>`;}
+
+function commentsSectionTemplate() {
+    `<section class="commentsSection" id="commentsSection${i}">
+        <div class="commentsSectionButtons">
+            <button class="commentsSectionHideButton">Hide</button>
+            <button class="commentsSectionMoreButton">More >></button>
+        </div>
+    </section>`
+}
+
 // -------------------------CLASSES-----------------------------
 
 class Profile {
@@ -1748,39 +1791,26 @@ class Profile {
 }
 
 class Bleep {
-    constructor(time, text, attachments, shares, comments, likes) {
-        this.time = time;
-        this.text = text;
-        this.attachments = attachments;
-        this.shares = shares;
-        this.comments = comments;
-        this.likes = likes;
-    }
-
-    // !! needs a more efficient version
-    get likesTransformer() {
-        if (this.likes>999) {
-            let number = this.likes.toString();
-            return `${number.slice(0,-3)}K`;
-        }
-        if (this.likes<=999) {
-            return this.likes;
-        }
-        return null;
-    
-    }
-    get sharesTransformer() {
-        if (this.shares===0) {
-            return null;
-        }
-    return `${this.shares}+`;
-    }
-
-    get commentsTransformer() {
-        if (this.comments===0) {
-            return null;
-        }
-    return `${this.comments}+`;
+    constructor(index) {
+        this.index = index;
+        this.bleep = document.querySelector(`#bleep${index}`);
+        this.profileImage = this.bleep.querySelector(".profileImage");
+        this.profileName = this.bleep.querySelector(".profileName");
+        this.profileUsername = this.bleep.querySelector(".profileUsername");
+        this.timestamp = this.bleep.querySelector(".timestamp");
+        this.topRightButton = this.bleep.querySelector(".topRightButton");
+        this.topRightPopUp = this.bleep.querySelector(".topRightPopUp");
+        this.blockButton = this.bleep.querySelector(".blockButton");
+        this.reportButton = this.bleep.querySelector(".reportButton");
+        this.shareButton = this.bleep.querySelector(".shareButton");
+        this.shareCounter = this.bleep.querySelector(".shareCounter");
+        this.commentButton = this.bleep.querySelector(".commentButton");
+        this.commentCounter = this.bleep.querySelector(".commentCounter");
+        this.likeButton = this.bleep.querySelector(".likeButton");
+        this.likeCounter = this.bleep.querySelector(".likeCounter");
+        this.numberOfShares;
+        this.numberOfComments;
+        this.numberOfLikes;
     }
 }
 
@@ -1821,18 +1851,16 @@ function countCharsLeft() {
     return 300 - composeInput.value.length;
 }
 
-function generateComments(n){
-    createCommentsSection(n);
-}
-
-function createCommentsSection(n){
-    document.querySelector(`#bleep${n}`).insertAdjacentHTML("afterend", 
-    `<section class="commentsSection" id="commentsSection${n}">
-        <div class="commentsSectionButtons">
-            <button class="commentsSectionHideButton">Hide</button>
-            <button class="commentsSectionMoreButton">More >></button>
-        </div>
-    </section>`);
+function setupCommentsSection(){
+    pushHTML(bleep, "afterend", commentsSectionTemplate());
+    // generateBleeps();
+    // document.querySelector(`#bleep${i}`).insertAdjacentHTML("afterend", 
+    // `<section class="commentsSection" id="commentsSection${i}">
+    //     <div class="commentsSectionButtons">
+    //         <button class="commentsSectionHideButton">Hide</button>
+    //         <button class="commentsSectionMoreButton">More >></button>
+    //     </div>
+    // </section>`);
 }
 
 // ---------------BUTTONS
@@ -1887,10 +1915,10 @@ function onLoadFunction() {
     generateBleeps(10);
 }
 
-function generateBleeps(numberOfBleeps, type) {
+function generateBleeps(numberOfBleeps) {
     const initial = i;
     for (i; i<initial+numberOfBleeps; i++) {
-        createbleep(i, type);
+        setupBleep();
     }
 }
 
@@ -1903,10 +1931,10 @@ function toggleBodyNoScroll() {
 const action = entries => {
     let targ = entries[0];
     if (targ.isIntersecting) {
-        viewport.unobserve(bleep);
+        viewport.unobserve(targetBleep);
         generateBleeps(10);
-        bleep = document.querySelectorAll(".bleep")[i-2];
-        viewport.observe(bleep);
+        targetBleep = document.querySelectorAll(".bleep")[i-2];
+        viewport.observe(targetBleep);
     }
 }
 
@@ -1915,9 +1943,9 @@ const options = {
 }
 
 const viewport = new IntersectionObserver(action, options);
-let bleep = document.querySelectorAll(".bleep")[i-2];
+let targetBleep = document.querySelectorAll(".bleep")[i-2];
 
-viewport.observe(bleep);
+viewport.observe(targetBleep);
 
 // ----------------------------GLOBAL LISTENERS-----------------------------
 
@@ -2009,7 +2037,7 @@ sendWarningYesButton.addEventListener("click", e => {
 })
 
 function blockUser(i){
-    const bleepUsername = document.querySelectorAll(".bleep_profileInfo_username");
+    const bleepUsername = document.querySelectorAll(".profileUsername");
     for (let a=0; a<i; a++) {
         if (bleepUsername[a].innerText === targetUsername){
             bleepUsername[a].closest(".bleep").remove();
@@ -2019,87 +2047,29 @@ function blockUser(i){
 
 // ----------------------------BLEEP CREATION------------------------------
 
-function createbleep(i, type) {
-    pushHtml(i, type);
+function setupBleep() {
+    createBleep();
+    bleepArray[i] = new Bleep(i);
+    console.log(bleepArray[i]);
     setInnerContent(i);
+    // setEventListeners(i);
 }
 
-function pushHtml(i, type) {
-    if (!type) {
-        bleepList.insertAdjacentHTML("beforeend", 
-            `
-                <div class="bleep" id=bleep${i}>
-                    <img class="bleep_profileImage" alt="Profile Image">
-                    <header class="bleep_profileInfo">
-                        <h5 class="bleep_profileInfo_name"></h5>
-                        <h6 class="bleep_profileInfo_username">@</h6>
-                        <time class="bleep_profileInfo_timestamp"></time>
-                        <button class="bleep_topRightButton"><img src="svgs/report_off.svg"></button>
-                    </header>
-                    <div class="bleep_topRight off">
-                        <button class="bleep_topRight_blockButton">Block</button>
-                        <button class="bleep_topRight_reportButton">Report</button>
-                    </div>sidebar
-            
-                    <p class="bleep_message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis atque, molestias laudantium omnis suscipit cumque delectus, tempore doloribus tempora ut nemo, sapiente mollitia! Sit, facilis.</p>
-                    
-                    <div class="actionbar">
-                        <button class="action action_shareButton">
-                            <label for="shares" class="shares"></label>
-                            <img src="svgs/share_off.svg" class="action_shareButtonImg">
-                        </button>
-            
-                        <button class="action action_commentButton">
-                            <label for="comments" class="comments"></label>
-                            <img src="svgs/comment_off.svg" class="action_commentButtonImg">
-                        </button>
-            
-                        <button class="action action_likeButton">
-                            <label for="likes" class="likes"></label>
-                            <img src="svgs/like_off.svg" class="action_likeButtonImg">
-                        </button>
-                    </div>
-                </div>
-                `);
-    }else{
-        type.insertAdjacentHTML("afterbegin", 
-        `
-            <div class="bleep" id=bleep${i}>
-                <img class="bleep_profileImage" alt="Profile Image">
-                <header class="bleep_profileInfo">
-                    <h5 class="bleep_profileInfo_name"></h5>
-                    <h6 class="bleep_profileInfo_username">@</h6>
-                    <time class="bleep_profileInfo_timestamp"></time>
-                    <button class="bleep_topRightButton"><img src="svgs/report_off.svg"></button>
-                </header>
-                <div class="bleep_topRight off">
-                    <button class="bleep_topRight_blockButton">Block</button>
-                    <button class="bleep_topRight_reportButton">Report</button>
-                </div>sidebar
-        
-                <p class="bleep_message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis atque, molestias laudantium omnis suscipit cumque delectus, tempore doloribus tempora ut nemo, sapiente mollitia! Sit, facilis.</p>
-                
-                <div class="actionbar">
-                    <button class="action action_shareButton">
-                        <label for="shares" class="shares"></label>
-                        <img src="svgs/share_off.svg" class="action_shareButtonImg">
-                    </button>
-        
-                    <button class="action action_commentButton">
-                        <label for="comments" class="comments"></label>
-                        <img src="svgs/comment_off.svg" class="action_commentButtonImg">
-                    </button>
-        
-                    <button class="action action_likeButton">
-                        <label for="likes" class="likes"></label>
-                        <img src="svgs/like_off.svg" class="action_likeButtonImg">
-                    </button>
-                </div>
-            </div>
-            `);
-    }
-    
+function createBleep(){
+    pushHTML(bleepList, "beforeend", bleepTemplate(i));
 }
+
+function pushHTML(place, position, content) {
+    place.insertAdjacentHTML(position, content);
+}
+
+// function pushHTML(i, type) {
+//     if (!type) {
+//         bleepList.insertAdjacentHTML("beforeend", bleepTemplate(i));
+//     }else{
+//         type.insertAdjacentHTML("afterbegin", bleepTemplate(i));
+//     }
+// }
 
 // ----------------------------bleep SETUP--------------------------------
 
@@ -2107,7 +2077,6 @@ function setInnerContent(i){
     createProfile(i);
     setProfileInfo(i);
     setNumericalValues(i);
-    setEventListeners(i);
 }
 
 // ----------------------------PROFILE CREATION------------------------------
@@ -2129,13 +2098,6 @@ function genderPicker(){
         }
     return "female";
 }
-
-// WORKS
-// async function imagePicker(gender, i) {
-//     // const data = await fetchData(`https://fakeface.rest/face/view?gender=${gender}&minimum_age=18`);
-//     // profileArray[i].image = data.url;
-//     // document.querySelectorAll(".bleep_profileImage")[i].src = data.url;
-// }
 
 //^ SATISFIED
 function imagePicker() {
@@ -2187,54 +2149,37 @@ function usernamePicker(firstname, lastname, gender) {
     return result.toLowerCase();
 }
 
-
-
-function timeStamper(i) {
+function timeStamper() {
     return Date.now();
 }
 
-function setProfileInfo(i) {
-    const profileImage = document.querySelector(`#bleep${i} .bleep_profileImage`);
-    const profileName = document.querySelector(`#bleep${i} .bleep_profileInfo_name`);
-    const profileUsername = document.querySelector(`#bleep${i} .bleep_profileInfo_username`);
-
-    profileImage.src = profileArray[i].image;
-    profileName.innerText = profileArray[i].fullName;
-    profileUsername.innerText = `@${profileArray[i].username}`;
+function setProfileInfo() {
+    bleepArray[i].profileImage.src = profileArray[i].image;
+    bleepArray[i].profileName.innerText = profileArray[i].fullName;
+    bleepArray[i].profileUsername.innerText = `@${profileArray[i].username}`;
 }
 
-function setNumericalValues(i) {
-    const time = timeStamper(i);
-    const text = null;
-    const attachments = null;
-    const shares = x(500)
-    const comments = x(200);
-    const likes = x(15000);
+function setNumericalValues() {    
+    bleepArray[i].numberOfshares = x(300);
+    bleepArray[i].numberOfcomments = x(150);
+    bleepArray[i].numberOfLikes = x(20000);
 
-    
-    bleepArray[i] = new Bleep(time, text, attachments, shares, comments, likes);
-    const timestamp = document.querySelector(`#bleep${i} .bleep_profileInfo_timestamp`);
-    const numberofShares = document.querySelector(`#bleep${i} .shares`);
-    const numberofComments = document.querySelector(`#bleep${i} .comments`);
-    const numberofLikes = document.querySelector(`#bleep${i} .likes`);
-
-    timestamp.innerText = bleepArray[i].time;
-    numberofShares.innerText = bleepArray[i].sharesTransformer;
-    numberofComments.innerText = bleepArray[i].comments;
-    numberofLikes.innerText = bleepArray[i].likesTransformer;
+    bleepArray[i].shareCounter.innerText = bleepArray[i].numberOfshares;
+    bleepArray[i].commentCounter.innerText = bleepArray[i].numberOfcomments;
+    bleepArray[i].likeCounter.innerText = bleepArray[i].numberOfLikes;
 }
 
 function setEventListeners(i){
     //------------Buttons
-    const topRightButton = document.querySelector(`#bleep${i} .bleep_topRightButton`);
-    const shareButton = document.querySelector(`#bleep${i} .action_shareButton`);
-    const commentButton = document.querySelector(`#bleep${i} .action_commentButton`);
-    const likeButton = document.querySelector(`#bleep${i} .action_likeButton`);
-    const topRightBlockButton = document.querySelector(`#bleep${i} .bleep_topRight_blockButton`);
-    const topRightReportButton = document.querySelector(`#bleep${i} .bleep_topRight_reportButton`);
+    const topRightButton = document.querySelector(`#bleep${i} .topRightButton`);
+    const shareButton = document.querySelector(`#bleep${i} .shareButton`);
+    const commentButton = document.querySelector(`#bleep${i} .commentButton`);
+    const likeButton = document.querySelector(`#bleep${i} .likeButton`);
+    const topRightBlockButton = document.querySelector(`#bleep${i} .blockButton`);
+    const topRightReportButton = document.querySelector(`#bleep${i} .reportButton`);
 
     //------------Elements
-    const bleepTopRight = document.querySelector(`#bleep${i} .bleep_topRight`);
+    const bleepTopRight = document.querySelector(`#bleep${i} .topRightPopUp`);
 
     //------------Listeners
     let firstTime = true;
@@ -2245,12 +2190,13 @@ function setEventListeners(i){
         if (!firstTime) {
             return toggleDisplayNoneOf(commentsSection);
         }else{
-            generateComments(i);
-            commentsSection = document.querySelector(`#commentsSection${i}`);
-            commentsSectionHideButton = document.querySelector(`#commentsSection${i} .commentsSectionHideButton`);
-            commentsSectionHideButton.addEventListener("click", e => {
-            toggleDisplayNoneOf(commentsSection);})
-            generateBleeps(3, commentsSection);
+            setupCommentsSection();
+            // generateComments(i);
+            // commentsSection = document.querySelector(`#commentsSection${i}`);
+            // commentsSectionHideButton = document.querySelector(`#commentsSection${i} .commentsSectionHideButton`);
+            // commentsSectionHideButton.addEventListener("click", e => {
+            // toggleDisplayNoneOf(commentsSection);})
+            // generateBleeps(3, commentsSection);
             firstTime=false;
         }
     })
