@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns="http://www.w3.org/2000/svg">
+<head> 
+    <title>Bleeper</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Twitter-like social media website">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Paul Stades">
+    <link rel="stylesheet" href="settings.css"/>
+    <link rel="icon" type="image/x-icon" href="plus.svg">
+    <script src="settings.js" defer></script>
+        <!-- GOOGLE FONTS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+        <!-- GOOGLE FONTS END -->
+
+</head>
+<body>
+    <!-------------------NAVBAR------------------------>
+    <nav id="mainNav">
+        <button type="button" id="mainNav_sidebarBtn"><img src="arrowup.svg"></button> 
+        <form>
+            <input type="text" id="mainNav_search" placeholder="Search">
+          </form>
+        <button type="button" id="mainNav_composeBtn"><img src="plus.svg"></button> 
+    </nav>
+
+    <!-----------------SIDE BAR---------------------->
+    <aside class="sidebar off" id="sidebar">
+        <button id="githubBtn"><a href="https://github.com/"><img src="github.svg"></a></button>
+        <button id="bleeperBtn"><a href=bleeper.html><img src="heart_off.svg"></a></button>
+        <button id="yourProfileBtn"><a href=yourProfile.html><img src="profile_placeholder.svg"></a></button>
+    </aside>
+
+    <ul class= "settingsList" id="settingsList">
+        <li class="settingsItem">Account</li>
+        <li class="settingsItem"><button id="clearLSBtn">Clear local storage</button></li>
+    </ul>
+
+</body>
+</html>

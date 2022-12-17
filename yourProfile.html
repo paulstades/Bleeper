@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns="http://www.w3.org/2000/svg">
+<head> 
+    <title>Bleeper</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Twitter-like social media website">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Paul Stades">
+    <link rel="stylesheet" href="yourProfile.css"/>
+    <link rel="icon" type="image/x-icon" href="plus.svg">
+    <script src="yourProfile.js" defer></script>
+        <!-- GOOGLE FONTS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+        <!-- GOOGLE FONTS END -->
+
+</head>
+<body>
+    <!-------------------NAVBAR------------------------>
+    <nav id="mainNav">
+        <button type="button" id="mainNav_sidebarBtn"><img src="arrowup.svg"></button> 
+        <form>
+            <input type="text" id="mainNav_search" placeholder="Search">
+          </form>
+        <button type="button" id="mainNav_composeBtn"><img src="plus.svg"></button> 
+    </nav>
+
+        <!-----------------SIDE BAR---------------------->
+        <aside class="sidebar off" id="sidebar">
+            <button id="githubBtn"><a href="https://github.com/"><img src="github.svg"></a></button>
+            <button id="settingsBtn"><a href=settings.html><img src="cog.svg"></a></button>
+            <button id="yourProfileBtn"><a href=yourProfile.html><img src="profile_placeholder.svg"></a></button>
+        </aside>
+
+        <!----------------COMPOSE FORM--------------------->
+        <div class="composeContainer off" id="composeContainer">
+
+            <div class="compose" id="compose">
+                <button id="compose_cancelBtn">Cancel</button>
+                <h1 id="compose_title">Compose</h1>
+                <button id="compose_sendBtn">Send</button>
+                <textarea id="compose_input" spellcheck="true" maxlength="300" placeholder="Type here"></textarea>
+            </div>
+
+            <!---------------COMPOSE NAVBAR-------------------->
+            
+            <nav class="composeNav" id="composeNav">
+                <button type="button" id="composeNav_eraseBtn"><img src="cross.svg"></button>
+                <form action="" class="composeNav_form">
+                    <input type="text" id="composeNav_charCount" readonly placeholder="">
+                </form>
+                <button type="button" id="composeNav_attachBtn"><img src="attachments.svg"></button>
+            </nav>
+
+            <!----------------SEND WARNING--------------------->
+
+            <div class="sendWarning off" id="sendWarning">
+                <div id="sendWarning_box">
+                <h2 id="sendWarning_msg">Send message?</h2>
+                <button type="button" id="sendWarning_yesBtn">Yes</button>
+                <button type="button" id="sendWarning_noBtn">No</button>
+                </div>
+            </div>
+
+            <!---------------ERASE WARNING--------------------->
+
+            <div class="eraseWarning off" id="eraseWarning">
+                <div id="eraseWarning_box">
+                <h2 id="eraseWarning_msg">Erase everything?</h2>
+                <button type="button" id="eraseWarning_yesBtn">Yes</button>
+                <button type="button" id="eraseWarning_noBtn">No</button>
+                </div>
+            </div>
+        </div>
+
+
+        <!------------------BLEEPS-------------------->
+        <div class="bleepList" id="bleepList">
+            
+        </div>
+</body>
+</html>

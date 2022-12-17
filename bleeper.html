@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns="http://www.w3.org/2000/svg">
+<head> 
+    <title>Bleeper</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Twitter-like frontend-only social media website">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="author" content="Paul Stades">
+    <link rel="stylesheet" href="bleeper.css"/>
+    <link rel="icon" type="image/x-icon" href="svgs/plus.svg">
+    <script src="bleeper.js" defer></script>
+        <!-- GOOGLE FONTS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
+        <!-- GOOGLE FONTS END -->
+
+</head>
+<body>
+    <!-------------------NAVBAR------------------------>
+    <nav id="mainNav">
+        <button type="button" id="mainNav_sidebarButton"><img src="svgs/arrowup.svg"></button> 
+        <form>
+            <input type="text" id="mainNav_search" placeholder="Search">
+          </form>
+        <button type="button" id="mainNav_composeButton"><img src="svgs/plus.svg"></button> 
+    </nav>
+
+    <!-------------------LOGINPOPUP------------------------>
+    <section class="loginPopUp off" id="loginPopUp">
+        <div id="loginPopUp_content">
+            <h2 id="loginPopUp_message">Log In or Sign Up in order to participate</h2>
+            <button type="button" id="loginPopUp_loginButton">Log In</button>
+            <button type="button" id="loginPopUp_signupButton">Sign Up</button>
+        </div>
+    </section>
+
+    <!-----------------SIDE BAR---------------------->
+    <aside class="sidebar off" id="sidebar">
+        <button id="githubButton"><a href="https://github.com/"><img src="svgs/github.svg"></a></button>
+        <button id="settingsButton"><a href=settings.html><img src="svgs/cog.svg"></a></button>
+        <button id="yourProfileButton"><a href=yourProfile.html><img src="svgs/profile_placeholder.svg"></a></button>
+    </aside>
+
+    <!----------------COMPOSE FORM--------------------->
+    <div class="composeContent off" id="composeContent">
+
+        <div class="compose" id="compose">
+            <button id="compose_cancelButton">Cancel</button>
+            <h1 id="compose_title">Compose</h1>
+            <button id="compose_sendButton">Send</button>
+            <textarea id="compose_input" spellcheck="true" maxlength="300" placeholder="Type here"></textarea>
+        </div>
+
+        <!---------------COMPOSE NAVBAR-------------------->
+        
+        <nav class="composeNav" id="composeNav">
+            <button type="button" id="composeNav_eraseButton"><img src="svgs/cross.svg"></button>
+            <form action="" class="composeNav_form">
+                <input type="text" id="composeNav_charsLeftCounter" readonly>
+            </form>
+            <button type="button" id="composeNav_attachButton"><img src="svgs/attachments.svg"></button>
+        </nav>
+
+        <!----------------SEND WARNING--------------------->
+
+        <section class="sendWarning off" id="sendWarning">
+            <div id="sendWarning_content">
+                <h2 id="sendWarning_message">Send message?</h2>
+                <button type="button" id="sendWarning_yesButton">Yes</button>
+                <button type="button" id="sendWarning_noButton">No</button>
+            </div>
+        </section>
+
+        <!---------------ERASE WARNING--------------------->
+
+        <section class="eraseWarning off" id="eraseWarning">
+            <div id="eraseWarning_content">
+                <h2 id="eraseWarning_message">Erase everything?</h2>
+                <button type="button" id="eraseWarning_yesButton">Yes</button>
+                <button type="button" id="eraseWarning_noButton">No</button>
+            </div>
+        </section>
+
+    </div>
+    <!----------------BLOCK POPUP----------------->
+    <section class="blockUserPopUp off" id="blockUserPopUp">
+        <div id="blockUserPopUp_content">
+            <h2 id="blockUserPopUp_message">Block this user?</h2>
+            <div id="blockUserPopUp_accountInfo">
+                <img src="" alt="Profile Image" id="blockUserPopUp_profileImage">
+                <div id="blockUserPopUp_nameContainer">
+                    <h5 id="blockUserPopUp_profileName"></h5>
+                    <h6 id="blockUserPopUp_profileUsername"></h6>
+                </div>
+            </div>
+            <button type="button" id="blockUserPopUp_yesButton">Yes</button>
+            <button type="button" id="blockUserPopUp_noButton">No</button>
+        </div>
+    </section>
+
+    <!---------------REPORT POPUP----------------->
+    <section class="reportPopUp off" id="reportPopUp">
+        <fieldset id="reportPopUp_content">
+            <div id="reportPopUp_message">Report reason:</div>
+            <select id="reportPopUp_form">
+                <option value="spam">Spam</option>
+                <option value="harassment">Harassment</option>
+                <option value="sexual content">Sexual content</option>
+                <option value="graphic content">Graphic content</option>
+                <option value="calls to violence">Calls to violence</option>
+                <option value="violence">Violence</option>
+                <option value="child abuse">Child abuse</option>
+                <option value="animal abuse">Animal abuse</option>
+                <option value="promoting terrorism">Promotes terrorism</option>
+            </select>
+            <button type="button" id="reportPopUp_confirmButton">Confirm</button>
+            <button type="button" id="reportPopUp_cancelButton">Cancel</button>
+        </fieldset>
+    </section>
+
+    <!----------------REPORT CONFIRMATION----------------->
+    <section class="confirmReport off" id="confirmReport">
+        <div id="confirmReport_content">
+            <h2 id="confirmReport_message">Are you sure you want to report this user for <strong id="confirmReport_message_reason">reason</strong>?<br> False reports will be prosecuted</h2>
+            <div id="confirmReport_accountInfo">
+                <img src="pics/1.jpg" alt="Profile Image" id="confirmReport_profileImage">
+                <div id="confirmReport_nameContainer">
+                    <h5 id="confirmReport_profileName">Jenny</h5>
+                    <h6 id="confirmReport_profileUsername">@fdsafdslai</h6>
+                </div>
+            </div>
+            <button type="button" id="confirmReport_yesButton">Yes</button>
+            <button type="button" id="confirmReport_noButton">No</button>
+        </div>
+    </section>
+
+    <!------------------BLEEPS-------------------->
+    <main class="bleepList" id="bleepList">
+
+         <template id="bleepTemplate">
+            <div class="bleep" id=bleep${i}>
+                <img class="bleep_profileImage" src="pics/10.jpg" alt="Profile Image">
+                <header class="bleep_profileInfo">
+                    <h5 class="bleep_profileInfo_name">Johhny Whatever</h5>
+                    <h6 class="bleep_profileInfo_username">@dsaocfna984</h6>
+                    <time class="bleep_profileInfo_timestamp">1380j18014</time>
+                    <button class="bleep_topRightButton"><img src="svgs/report_off.svg"></button>
+                </header>
+                <div class="bleep_topRight off">
+                    <button class="bleep_topRight_blockButton">Block</button>
+                    <button class="bleep_topRight_reportButton">Report</button>
+                </div>sidebar
+        
+                <p class="bleep_message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis atque, molestias laudantium omnis suscipit cumque delectus, tempore doloribus tempora ut nemo, sapiente mollitia! Sit, facilis.</p>
+                
+                <div class="actionbar">
+                    <button class="action action_shareButton">
+                        <label for="shares" class="shares">123+</label>
+                        <img src="svgs/share_off.svg" class="action_shareButtonImg">
+                    </button>
+        
+                    <button class="action action_commentButton">
+                        <label for="comments" class="comments">56</label>
+                        <img src="svgs/comment_off.svg" class="action_commentButtonImg">
+                    </button>
+        
+                    <button class="action action_likeButton">
+                        <label for="likes" class="likes">5K</label>
+                        <img src="svgs/like_off.svg" class="action_likeButtonImg">
+                    </button>
+                </div>
+            </div>
+        </template>
+
+        <template id="commentsSectionTemplate">
+            <section class="commentsSection" id="commentsSection${i}">
+                <div class="commentsSectionButtons">
+                <button class="commentsSectionHideButton">Hide</button>
+                <button class="commentsSectionMoreButton">More >></button>
+                </div>
+            </section>
+        </template>
+            
+    </main>
+</body>
+</html>
