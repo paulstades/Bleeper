@@ -1766,9 +1766,7 @@ class Bleep {
         if (this.likes<=999) {
             return this.likes;
         }
-        else{
-            return null;
-        }
+        return null;
     
     }
     get sharesTransformer() {
@@ -1800,24 +1798,22 @@ class PopUp {
 
 const x = (limit) => Math.floor(Math.random() * limit)
 
-//WORKS
-async function fetchData(url) {
-    const response = await fetch(url);
-    return response;
-}
-
 function toggleDisplayNoneOf() {
     for (let i = 0; i < arguments.length; i++) {
         arguments[i].classList.toggle("off");
     }
 }
 
+function setConfirmReportMessageReason(){
+    confirmReportMessageReason.innerText = reportPopUpForm.value;
+}
+
 function updateCharsLeftCounter() {
     const charsLeft = countCharsLeft();
-    if (charsLeft === 1){
-        composeNavCharsLeftCounter.placeholder = `1 character left`;
-    }else{
+    if (charsLeft !== 1){
         composeNavCharsLeftCounter.placeholder = `${charsLeft} characters left`;
+    }else{
+        composeNavCharsLeftCounter.placeholder = `1 character left`;
     }
 }
 
@@ -1875,24 +1871,25 @@ const reportProfileName = document.querySelector("#confirmReport_profileName");
 const reportProfileUsername = document.querySelector("#confirmReport_profileUsername");
 const reportPopUp = document.querySelector("#reportPopUp");
 const confirmReport = document.querySelector("#confirmReport");
-const confirmReportmessageReason = document.querySelector("#confirmReport_message_reason");
+const confirmReportMessageReason = document.querySelector("#confirmReport_message_reason");
 const reportPopUpForm = document.querySelector("#reportPopUp_form");
 
-const blockUserPopUp2 = new PopUp("blockUserPopUp");
 
+// ! don't like this
+const blockUserPopUp2 = new PopUp("blockUserPopUp");
 const confirmReport2 = new PopUp("confirmReport");
 // ----------------------------ONLOAD-----------------------------
 
-window.onload=onLoad();
+window.onload=onLoadFunction();
 
-function onLoad() {
+function onLoadFunction() {
     window.scrollTo(0, 0);
-    generatebleeps(10);
+    generateBleeps(10);
 }
 
-function generatebleeps(numberOfbleeps, type) {
+function generateBleeps(numberOfBleeps, type) {
     const initial = i;
-    for (i; i<initial+numberOfbleeps; i++) {
+    for (i; i<initial+numberOfBleeps; i++) {
         createbleep(i, type);
     }
 }
@@ -1907,7 +1904,7 @@ const action = entries => {
     let targ = entries[0];
     if (targ.isIntersecting) {
         viewport.unobserve(bleep);
-        generatebleeps(10);
+        generateBleeps(10);
         bleep = document.querySelectorAll(".bleep")[i-2];
         viewport.observe(bleep);
     }
@@ -1985,7 +1982,7 @@ reportPopUpCancelButton.addEventListener("click", e => {
 })
 
 reportPopUpConfirmButton.addEventListener("click", e => {
-    confirmReportmessageReason.innerText = reportPopUpForm.value;
+    setConfirmReportMessageReason();
     toggleDisplayNoneOf(reportPopUp, confirmReport);
     toggleBodyNoScroll();
 })
@@ -2000,7 +1997,7 @@ confirmReportNoButton.addEventListener("click", e => {
     toggleDisplayNoneOf(confirmReport);
 })
 
-//todo backspace registers as -character after a long series
+//# backspace registers as -character after a long series of inputs
 
 navComposeButton.addEventListener("click", e => {
     updateCharsLeftCounter();
@@ -2020,7 +2017,7 @@ function blockUser(i){
     }
 }
 
-// ----------------------------bleep CREATION------------------------------
+// ----------------------------BLEEP CREATION------------------------------
 
 function createbleep(i, type) {
     pushHtml(i, type);
@@ -2253,7 +2250,7 @@ function setEventListeners(i){
             commentsSectionHideButton = document.querySelector(`#commentsSection${i} .commentsSectionHideButton`);
             commentsSectionHideButton.addEventListener("click", e => {
             toggleDisplayNoneOf(commentsSection);})
-            generatebleeps(3, commentsSection);
+            generateBleeps(3, commentsSection);
             firstTime=false;
         }
     })
