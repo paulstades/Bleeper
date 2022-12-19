@@ -327,10 +327,10 @@ button {
 }
 
 /* -----------------------------------
--------------BLOCK PopUp-------------
+-------------BLOCK POPUP-------------
 -------------------------------------- */
 
-.blockUserPopUp {
+.blockPopUp {
     z-index: 105;
     position: fixed;
     top: 0;
@@ -342,7 +342,7 @@ button {
     background: rgba(0, 0, 0, 0.8);
 }
 
-#blockUserPopUp_content {
+#blockPopUp_content {
     display:grid;
     width: 90%;
     gap: 1rem;
@@ -353,13 +353,13 @@ button {
     background: rgb(30, 30, 30);
 }
 
-#blockUserPopUp_message {
+#blockPopUp_message {
     grid-column: 1 / 3;
     text-align: center;
     padding: 1rem;
 }
 
-#blockUserPopUp_accountInfo {
+#blockPopUp_accountInfo {
     width: 100%;
     grid-column: 1 / 3;
     display: grid;
@@ -370,21 +370,21 @@ button {
     border-radius: 0.5rem;
 }
 
-#blockUserPopUp_profileImage {
+#blockPopUp_profileImage {
     grid-row: 1/ 3;
     height: 4rem;
     width: 4rem;
     border-radius: 50%;
 }
 
-#blockUserPopUp_nameBox {
+#blockPopUp_nameContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 4rem;
 }
 
-#blockUserPopUp_profileName {
+#blockPopUp_profileName {
     grid-column: 2;
     margin-left: 1rem;
     font-weight: bold;
@@ -393,7 +393,7 @@ button {
     text-overflow: ellipsis;
 }
 
-#blockUserPopUp_profileUsername {
+#blockPopUp_profileUsername {
     grid-column: 2;
     margin-left: 1rem;
     overflow: clip;
@@ -401,7 +401,7 @@ button {
     text-overflow: ellipsis;
 }
 
-#blockUserPopUp button {
+#blockPopUp button {
     grid-row: 3;
     margin-right: 0.5rem;
 }
@@ -538,12 +538,12 @@ button {
 }
 
 /* -----------------------------------
-------------------bleepS---------------
+------------------BLEEPS---------------
 -------------------------------------- */
 
 .bleepList {
     height: 100%;
-    margin-bottom: 4rem;
+    margin-bottom: 4.5rem;
 }
 
 .bleep {
@@ -555,6 +555,7 @@ button {
     background: rgb(30, 30, 30);
     box-shadow: 0 0 5px black;
     margin: 0.5rem; 
+    margin-bottom: 0;
     padding: 1rem 1rem 0 1rem;
 }
 
@@ -693,7 +694,7 @@ button {
 /* --------COMMENTS-------- */
 
 .commentsSection {
-    margin: -0.5rem 1rem 0.5rem 1rem;
+    margin: 0 1rem 0.5rem 1rem;
     padding: 0.5rem 1rem 0.5rem 1rem;
     background:rgb(20, 20, 20);
     border-radius: 0 0 0.5rem 0.5rem;
@@ -705,12 +706,12 @@ button {
     text-align: center;
 }
 
-.commentsSectionHideButton {
+.hideButton {
     padding: 0.5rem;
     width: 25%;
 }
 
-.commentsSectionMoreButton {
+.moreButton {
     padding: 0.5rem;
     width: 25%;
 }
