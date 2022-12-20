@@ -1212,44 +1212,33 @@ function commentsSectionTemplate(b) {
 
 // -------------------------CLASSES-----------------------------
 
-class Profile {
-    constructor(gender, image, firstName, lastName, username) {
-        this.gender = gender;
-        this.image = image;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
+class Generic {
+    constructor(element){
+        this.itself = document.querySelector(`${element}`);
     }
-        get fullName() {
-            return `${this.firstName}  ${this.lastName}`;
-        }
 }
 
-class BleepList {
-    constructor (path){
-        this.itself = document.querySelector('#bleepList');
-    }
-
-    generateNewBleeps(numberOfBleeps) {
-        for (const initial=b; b<initial+numberOfBleeps; b++) {
-            setupBleep(b, this.itself, 'beforeend', bleepTemplate());
+class BleepList extends Generic {
+    generateNewBleeps(number){
+        for (const initial=b; b<initial+number; b++) {
+            this.itself.insertAdjacentHTML('beforeend', bleepTemplate());
+            bleepArray[b] = new Bleep(`#bleep${b}`);
+            bleepArray[b].updateValues();
+            bleepArray[b].setEventListeners();
         }
     }
-
 }
 
-class Bleep {
-    constructor(index) {
-        this.index;
-        this.time;
-        this.image;
-        this.name;
-        this.username;
-        this.message;
-        this.shares;
-        this.comments;
-        this.likes;
-        this.itself = document.querySelector(`#bleep${index}`);
+class Bleep extends Generic {
+    constructor(element) {
+        super(element)
+        this.image = imagePicker();
+        this.name = namePicker();
+        this.username = usernamePicker(this.name);
+        this.time = timeSetter();
+        this.shares = x(300);
+        this.comments = x(150);
+        this.likes = x(19500)+500;
         this.profileImage = this.itself.querySelector(".profileImage");
         this.profileName = this.itself.querySelector(".profileName");
         this.profileUsername = this.itself.querySelector(".profileUsername");
@@ -1265,25 +1254,14 @@ class Bleep {
         this.commentCounter = this.itself.querySelector(".commentCounter");
         this.likeButton = this.itself.querySelector(".likeButton");
         this.likeButtonImage = this.itself.querySelector('.likeButtonImage')
-        this.likeCounter = this.itself.querySelector(".likeCounter");
-        
-    }
-
-    setValues() {
-        this.image = imagePicker();
-        this.name = namePicker();
-        this.username = usernamePicker(this.name);
-        this.time = Date.now();
-        this.shares = x(300);
-        this.comments = x(150);
-        this.likes = x(19500)+500;
+        this.likeCounter = this.itself.querySelector(".likeCounter");    
     }
 
     updateValues() {
         this.profileImage.src = this.image;
         this.profileName.innerText = this.name;
         this.profileUsername.innerText = this.username;
-        this.timestamp.innerText = this.time;
+        this.timestamp.innerText = timeToText(this.time);
         this.shareCounter.innerText = this.shares+'+';
         this.commentCounter.innerText = this.comments;
         this.likeCounter.innerText = this.likes;
@@ -1294,14 +1272,14 @@ class Bleep {
             toggleDisplayNoneOf(this.topRightPopUp);
         })
         this.blockButton.addEventListener('click', e =>{
-            toggleDisplayNoneOf(blockPopUp, this.topRightPopUp);
+            toggleDisplayNoneOf(blockPopUp.itself, this.topRightPopUp);
             toggleBodyNoScroll();
-            this.passProfileInfoTo(blockPopUp2);
+            this.passInfoTo(blockPopUp);
         })
         this.reportButton.addEventListener('click', e => {
-            toggleDisplayNoneOf(reportPopUp, this.topRightPopUp);
+            toggleDisplayNoneOf(reportPopUp.itself, this.topRightPopUp);
             toggleBodyNoScroll();
-            this.passInfoTo(confirmReportPopUp2);
+            this.passInfoTo(confirmReportPopUp);
         })
         this.likeButton.addEventListener('click', e => {
             if (this.likeButtonImage.src === 'http://127.0.0.1:5500/svgs/like_off.svg'){
@@ -1322,26 +1300,26 @@ class Bleep {
         element.profileImage.src = this.image;
         element.profileName.innerText = this.name;
         element.profileUsername.innerText = this.username;
-        targetUsername = this.username;
+        element.target = this.itself;
     }
 
     updateNumbers() {
-      this.timestamp.innerText = this.time;
-      this.shareCounter.innerText = this.shares+'+';
-      this.commentCounter.innerText = this.comments;
-      this.likeCounter.innerText = this.likes;
+        this.timestamp.innerText = this.time;
+        this.shareCounter.innerText = this.shares+'+';
+        this.commentCounter.innerText = this.comments;
+        this.likeCounter.innerText = this.likes;
     }
 
     generateCommentsSection() {
         this.itself.insertAdjacentHTML('afterend', commentsSectionTemplate(b));
-        commentsSectionArray[b] = new CommentsSection(b);
+        commentsSectionArray[b] = new CommentsSection(`#commentsSection${b}`);
         commentsSectionArray[b].setEventListeners();
     }
 }
 
-class Navbar {
-    constructor(id) {
-        this.itself = document.querySelector(`${id}`);
+class Navbar extends Generic {
+    constructor(element) {
+        super(element)
         this.leftButton = this.itself.querySelector(`.leftButton`);
         this.leftButtonImage = this.leftButton.querySelector(`img`);
         this.centerButton = this.itself.querySelector(`.centerButton`);
@@ -1352,74 +1330,168 @@ class Navbar {
 
 class MainNav extends Navbar {
     setEventListeners(){
+        this.leftButton.addEventListener('click', e => {
+            toggleDisplayNoneOf(settings.itself, settingsNav.itself);
+            toggleBodyNoScroll();
+        })
         this.centerButton.addEventListener('click', e => {
-            toggleDisplayNoneOf(composeBleep.itself, composeNav.itself);
+            composeNav.updateCharsLeftCounter();
+            toggleDisplayNoneOf(composeArea.itself, composeNav.itself);
+            autoSize(composeBleep.textarea)
+            composeBleep.textarea.focus();
             toggleBodyNoScroll();
         })
     }
 }
 
 class ComposeNav extends Navbar {
-    
     setEventListeners(){
         this.leftButton.addEventListener('click', e => {
-            toggleDisplayNoneOf(composeBleep.itself, composeNav.itself);
+            toggleDisplayNoneOf(composeArea.itself, composeNav.itself);
             toggleBodyNoScroll();
         })
     }
 
     updateCharsLeftCounter() {
-        const charsLeft = 300 - composeBleep.input.value.length;
-        if (charsLeft !== 1){
+        const charsLeft = 300 - composeBleep.textarea.value.length;
+        if (charsLeft > 1){
             this.centerButton.innerText = `${charsLeft} characters left`;
+        }
+        else if (charsLeft === 1){
+            this.centerButton.innerText = `1 characters left`;
         }else{
-            this.centerButton.innerText = `1 character left`;
+            this.centerButton.innerText = `0 character left`;
         }
     }
 }
 
-class ComposeBleep {
-    constructor(id) {
-        this.itself = document.querySelector(`${id}`);
-        this.profileImage = this.itself.querySelector(`.profileImage`);
-        this.profileName = this.itself.querySelector(`.profileUsername`);
-        this.profileUsername = this.itself.querySelector(`.profileUsername`);
-        this.input = this.itself.querySelector(`input`);
-    }
-
-    setEventListeners() {
-        this.input.addEventListener('keydown', e => {
-                composeNav.updateCharsLeftCounter();
+class SettingsNav extends Navbar {
+    setEventListeners(){
+        this.rightButton.addEventListener('click', e => {
+            toggleDisplayNoneOf(this.itself, settings.itself);
+            toggleBodyNoScroll();
         })
     }
 }
 
-class PopUp {
-    constructor(input) {
-        this.itself = document.querySelector(`#${input}`);
-        this.profileImage = document.querySelector(`#${input}_profileImage`);
-        this.profileName = document.querySelector(`#${input}_profileName`);
-        this.profileUsername = document.querySelector(`#${input}_profileUsername`);
+class ComposeBleep extends Generic {
+    constructor(element) {
+        super(element)
+        this.profileImage = this.itself.querySelector(`.profileImage`);
+        this.profileName = this.itself.querySelector(`.profileUsername`);
+        this.profileUsername = this.itself.querySelector(`.profileUsername`);
+        this.timestamp = this.itself.querySelector(`.timestamp`);
+        this.topRightButton = this.itself.querySelector(`.topRightButton`);
+        this.textarea = this.itself.querySelector(`textarea`);
+    }
+
+    setEventListeners() {
+        this.textarea.addEventListener('input', e => {
+            composeNav.updateCharsLeftCounter();
+            this.textarea.setAttribute('rows', 1);
+            autoSize(this.textarea);
+            composeBleep.textarea.focus();
+        })
+        this.topRightButton.addEventListener('click', e=> {
+            toggleDisplayNoneOf(eraseWarning.itself);
+        })
     }
 }
 
-class CommentsSection {
-    constructor (index) {
-      this.itself = document.querySelector(`#commentsSection${index}`);
-      this.hideButton = this.itself.querySelector(`.hideButton`);
-      this.moreButton = this.itself.querySelector(`.moreButton`);
+function autoSize(element) {
+    let rowNumber = element.scrollHeight/19;
+    element.setAttribute('rows', rowNumber);
+}
+
+class Warning extends Generic {
+    constructor(element) {
+        super(element)
+        this.message = this.itself.querySelector(`.message`);
+        this.leftButton = this.itself.querySelector(`.leftButton`);
+        this.rightButton = this.itself.querySelector(`.rightButton`);
+    }
+}
+
+class EraseWarning extends Warning {
+    setEventListeners(){
+        this.leftButton.addEventListener('click', e => {
+            composeBleep.textarea.value = null;
+            composeBleep.textarea.setAttribute('rows', 1);
+            composeNav.updateCharsLeftCounter();
+            toggleDisplayNoneOf(this.itself);
+        })
+        this.rightButton.addEventListener('click', e => {
+            toggleDisplayNoneOf(this.itself);
+        })
+    }
+}
+
+class PopUp extends Warning {
+    constructor(element){
+        super(element)
+        this.select = this.itself.querySelector(`select`);
+    }
+    setEventListeners(){
+        this.leftButton.addEventListener('click', e => {
+            confirmReportPopUp.reason.innerText = this.select.value
+            toggleDisplayNoneOf(this.itself, confirmReportPopUp.itself)
+
+        })
+        this.rightButton.addEventListener('click', e => {
+            toggleDisplayNoneOf(this.itself);
+            toggleBodyNoScroll();
+        })
+    }
+}
+
+class RemovePopUp extends Warning {
+    constructor(element) {
+        super(element)
+        this.target;
+        this.profileImage = this.itself.querySelector(`.profileImage`);
+        this.profileName = this.itself.querySelector(`.profileName`);
+        this.profileUsername = this.itself.querySelector(`.profileUsername`);
+    }
+    setEventListeners(){
+        this.leftButton.addEventListener('click', e => {
+            this.target.remove();
+            toggleDisplayNoneOf(this.itself);
+            toggleBodyNoScroll();
+        })
+        this.rightButton.addEventListener('click', e => {
+            toggleDisplayNoneOf(this.itself);
+            toggleBodyNoScroll();
+        })
+    }
+}
+
+class ConfirmReportPopUp extends RemovePopUp {
+    constructor(element) {
+        super(element)
+        this.reason = this.itself.querySelector(`#reason`);
+    }
+}
+
+class CommentsSection extends Generic {
+    constructor (element) {
+        super(element)
+        this.hideButton = this.itself.querySelector(`.hideButton`);
+        this.moreButton = this.itself.querySelector(`.moreButton`);
     }
 
-    generateNewBleeps(){
-        for (const initial=b; b<initial+3; b++) {
-            setupBleep(b, this.itself, 'beforeend', bleepTemplate());
+    generateNewBleeps(number){
+        for (const initial=b; b<initial+number; b++) {
+            this.itself.insertAdjacentHTML('afterbegin', bleepTemplate(b));
+            bleepArray[b] = new Bleep(`#bleep${b}`);
+            bleepArray[b].updateValues();
+            bleepArray[b].setEventListeners();
         }
     }
 
     setEventListeners() {
-    this.hideButton.addEventListener('click', e=> {
-        toggleDisplayNoneOf(this.itself);
-    })
+        this.hideButton.addEventListener('click', e=> {
+            toggleDisplayNoneOf(this.itself);
+        })
     }
 }
 
@@ -1433,35 +1505,18 @@ function toggleDisplayNoneOf() {
     }
 }
 
-function setconfirmReportPopUpMessageReason(){
-    confirmReportPopUpMessageReason.innerText = reportPopUpForm.value;
-}
-
-
-// ---------------BUTTONS
-
-const navComposeButton = document.querySelector("#centerButton");
-const composeCancelButton = document.querySelector("#compose_cancelButton");
-const composeSendButton = document.querySelector("#compose_sendButton");
-const composeNavEraseButton = document.querySelector("#composeNav_eraseButton");
-const sendWarningYesButton = document.querySelector("#sendWarning_yesButton");
-const sendWarningNoButton = document.querySelector("#sendWarning_noButton");
-const eraseWarningYesButton = document.querySelector("#eraseWarning_yesButton");
-const eraseWarningNoButton = document.querySelector("#eraseWarning_noButton");
-const blockPopUpYesButton = document.querySelector("#blockPopUp_yesButton");
-const blockPopUpNoButton = document.querySelector("#blockPopUp_noButton");
-const reportPopUpCancelButton = document.querySelector("#reportPopUp_cancelButton");
-const reportPopUpConfirmButton = document.querySelector("#reportPopUp_confirmButton");
-const confirmReportPopUpYesButton = document.querySelector("#confirmReportPopUp_yesButton");
-const confirmReportPopUpNoButton = document.querySelector("#confirmReportPopUp_noButton");
-
 // ---------------ELEMENTS
 const bleepList = new BleepList('#bleepList');
 const mainNav = new MainNav(`#mainNav`);
 const composeBleep = new ComposeBleep(`#composeBleep`);
 const composeNav = new ComposeNav(`#composeNav`);
-const blockPopUp = new PopUp("blockPopUp");
-const confirmReportPopUp = new PopUp("confirmReportPopUp");
+const blockPopUp = new RemovePopUp(`#blockPopUp`);
+const confirmReportPopUp = new ConfirmReportPopUp(`#confirmReportPopUp`);
+const eraseWarning = new EraseWarning(`#eraseWarning`);
+const composeArea = new Generic(`#composeArea`);
+const settings = new Generic(`#settings`);
+const settingsNav = new SettingsNav(`#settingsNav`);
+const reportPopUp = new PopUp(`#reportPopUp`);
 
 // ----------------------------ONLOAD-----------------------------
 
@@ -1472,18 +1527,12 @@ function pageSetup() {
     bleepList.generateNewBleeps(10);
     mainNav.setEventListeners();
     composeNav.setEventListeners();
-}
-
-function generateBleeps(numberOfBleeps, place) {
-  if (place) {
-    for (const initial=b; b<initial+numberOfBleeps; b++) {
-        setupBleep(b, place, 'afterbegin', bleepTemplate());
-    }
-  }else{
-    for (const initial=b; b<initial+numberOfBleeps; b++) {
-      setupBleep(b, bleepList, 'beforeend', bleepTemplate());
-  }
-}
+    composeBleep.setEventListeners();
+    eraseWarning.setEventListeners();
+    settingsNav.setEventListeners();
+    blockPopUp.setEventListeners();
+    confirmReportPopUp.setEventListeners();
+    reportPopUp.setEventListeners();
 }
 
 function toggleBodyNoScroll() {
@@ -1518,22 +1567,7 @@ viewport.observe(targetBleep);
 //-----------COMPOSE PAGE
 
 
-confirmReportPopUpYesButton.addEventListener("click", e => {
-    blockUser(b);
-    i--;
-    toggleDisplayNoneOf(confirmReportPopUp);
-})
-
-confirmReportPopUpNoButton.addEventListener("click", e => {
-    toggleDisplayNoneOf(confirmReportPopUp);
-})
-
 //# backspace registers as -character after a long series of inputs`
-
-sendWarningYesButton.addEventListener("click", e => {
-    composeInput.value = "";
-    updateCharsLeftCounter();
-})
 
 function blockUser(b){
     const bleepUsername = document.querySelectorAll(".profileUsername");
@@ -1548,8 +1582,7 @@ function blockUser(b){
 
 function setupBleep(b, place, position, content) {
     place.insertAdjacentHTML(position, content);
-    bleepArray[b] = new Bleep(b);
-    bleepArray[b].setValues();
+    bleepArray[b] = new Bleep(`#bleep${b}`);
     bleepArray[b].updateValues();
     bleepArray[b].setEventListeners();
 }
@@ -1589,64 +1622,18 @@ function usernamePicker(name) {
     return '@'+name.toLowerCase();
 }
 
-function setEventListeners(b){
-    //------------Buttons
-    const topRightButton = bleepArray[b].topRightButton;
-    const shareButton = bleepArray[b].shareButton
-    const commentButton = bleepArray[b].commentButton;
-    const likeButton = bleepArray[b].likeButton;
-    const blockButton = bleepArray[b].blockButton;
-    const reportButton = bleepArray[b].reportButton;
-
-    //------------Elements
-    const topRightPopUp = bleepArray[b].topRightPopUp;
-
-    //------------Listeners
-    let firstTime = true;
-
-    topRightButton.addEventListener("click", e => {
-        toggleDisplayNoneOf(topRightPopUp);
-    })
-    
-//# I don't like blockPopUp2
-    blockButton.addEventListener("click", e => {
-        toggleDisplayNoneOf(blockPopUp, topRightPopUp);
-        toggleBodyNoScroll();
-        passProfileInfoTo(blockPopUp2, b);
-    })
-
-//# I don't like confirmReportPopUp2
-    reportButton.addEventListener("click", e => {
-        toggleDisplayNoneOf(reportPopUp, topRightPopUp);
-        toggleBodyNoScroll();
-        passProfileInfoTo(confirmReportPopUp2, b);
-    })
-
-    if (bleepArray[b].itself.closest('.commentsSection') === null) {
-        commentButton.addEventListener("click", e => {
-        if (!firstTime) {
-            if (bleepArray[b].commentButtonImage.src === 'http://127.0.0.1:5500/svgs/comment_off.svg'){
-            bleepArray[b].commentButtonImage.src = 'http://127.0.0.1:5500/svgs/comment_on.svg';
-            }else{
-            bleepArray[b].commentButtonImage.src = 'http://127.0.0.1:5500/svgs/comment_off.svg';
-            }
-            return toggleDisplayNoneOf(commentsSectionArray[b].itself);
-        }else{
-            bleepArray[b].commentButtonImage.src = 'http://127.0.0.1:5500/svgs/comment_on.svg';
-            setupCommentsSection(b);
-            firstTime=false;    
-        }
-        })
-    }else{
-        commentButton.addEventListener("click", e =>{
-            localStorage.setItem('bleepImage', profileArray[b].image);
-            localStorage.setItem('bleepName', profileArray[b].fullName);
-            localStorage.setItem('bleepUsername', profileArray[b].username);
-            localStorage.setItem('bleepTimestamp', bleepArray[b].time);
-            localStorage.setItem('bleepShares', bleepArray[b].shares);
-            localStorage.setItem('bleepComments', bleepArray[b].comments);
-            localStorage.setItem('bleepLikes', bleepArray[b].likes);
-            window.open("/bleep.html","_self")
-        })
+function timeSetter(limit) {
+    if (!limit) {
+    return Date.now() - x(150)*1000;
     }
+    return limit - x(150)*1000;
+}
+
+function timeToText(timestamp) {
+    const difference = (Date.now() - timestamp)/1000
+    if (difference<60) return `Less than a minute ago`
+    if (difference<120) return `One minute ago`
+    if (difference<3600) return `${Math.floor(difference/60)} minutes ago`
+    if (difference<7200) return `One hour ago`
+    if (difference<86400) return `${Math.floor((difference/60)/60)} hours ago`
 }

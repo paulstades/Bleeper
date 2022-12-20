@@ -18,6 +18,34 @@
 
 </head>
 <body>
+    <!-------------------SETTINGS---------------------->
+    <section class="settings off" id="settings">
+        <ul class="list" id="list">
+            <li>Account settings</li>
+            <li>Block list</li>
+            <li>Language</li>
+            <li>Dark mode</li>
+            <li>Clear local storage</li>
+            <li>About</li>
+        </ul>
+    </section>
+
+    <!----------------SETTINGS NAV--------------------->
+
+    <nav class="nav off" id="settingsNav">
+        <button type="button" class="leftButton"><img src="svgs/profile_placeholder.svg"></button> 
+        <button type="button" class="centerButton">Settings</button> 
+        <button type="button" class="rightButton"><img src="svgs/plus.svg"></button> 
+    </nav>
+
+    <!----------------PROFILE NAV--------------------->
+
+    <nav class="nav off" id="settingsNav">
+        <button type="button" class="leftButton"><img src="svgs/profile_placeholder.svg"></button> 
+        <button type="button" class="centerButton">Settings</button> 
+        <button type="button" class="rightButton"><img src="svgs/plus.svg"></button> 
+    </nav>
+
     <!-------------------NAVBAR------------------------>
     <nav class="nav" id="mainNav">
         <button type="button" class="leftButton"><img src="svgs/cog.svg"></button> 
@@ -35,23 +63,27 @@
     </section>
 
     <!----------------COMPOSE BLEEP--------------------->
-    <div class="composeBleep off" id=composeBleep>
-        <img class="profileImage" src="pics/1.jpg" alt="Profile Image">
-        <header class="infoContainer">
-            <h5 class="profileName">You</h5>
-            <h6 class="profileUsername">@you</h6>
-            <time class="timestamp">In progress...</time>
-            <button class="topRightButton"><img src="svgs/cross.svg"></button>
-        </header>
-        <input type="text" id="inputText" placeholder="Your message here"></input>
-    </div>
+    <section class="composeArea off" id="composeArea">
+        <div class="composeBleep" id=composeBleep>
+            <img class="profileImage" src="pics/1.jpg" alt="Profile Image">
+            <header class="infoContainer">
+                <h5 class="profileName">You</h5>
+                <h6 class="profileUsername">@you</h6>
+                <time class="timestamp">In progress...</time>
+                <button class="topRightButton"><img src="svgs/trash.svg"></button>
+            </header>
+            <textarea id="textArea" rows="1" spellcheck="true" maxlength="300" placeholder="Your message here"></textarea>
+        </div>
 
-    <!----------------COMPOSE NAV--------------------->
-    <nav class="nav off" id="composeNav">
-        <button type="button" class="leftButton"><img src="svgs/cross.svg"></button> 
-        <button type="button" class="centerButton">300 characters left</button> 
-        <button type="button" class="rightButton"><img src="svgs/arrowright_empty.svg"></button> 
-    </nav>
+       <!---------------ERASE WARNING--------------------->
+        
+       <section class="eraseWarning off" id="eraseWarning">
+        <div class="content">
+            <h2 class="message">Erase message?</h2>
+            <button type="button" class="leftButton">Yes</button>
+            <button type="button" class="rightButton">No</button>
+        </div>
+    </section>
 
         <!----------------SEND WARNING--------------------->
 
@@ -62,39 +94,36 @@
                 <button type="button" id="sendWarning_noButton">No</button>
             </div>
         </section>
+    </section>
 
-        <!---------------ERASE WARNING--------------------->
+    <!----------------COMPOSE NAV--------------------->
+    <nav class="nav off" id="composeNav">
+        <button type="button" class="leftButton"><img src="svgs/arrowdown.svg"></button> 
+        <button type="button" class="centerButton">300 characters left</button> 
+        <button type="button" class="rightButton"><img src="svgs/arrowright.svg"></button> 
+    </nav>
 
-        <section class="eraseWarning off" id="eraseWarning">
-            <div id="eraseWarning_content">
-                <h2 id="eraseWarning_message">Erase everything?</h2>
-                <button type="button" id="eraseWarning_yesButton">Yes</button>
-                <button type="button" id="eraseWarning_noButton">No</button>
-            </div>
-        </section>
-
-    </div>
     <!----------------BLOCK POPUP----------------->
     <section class="blockPopUp off" id="blockPopUp">
-        <div id="blockPopUp_content">
-            <h2 id="blockPopUp_message">Block this user?</h2>
-            <div id="blockPopUp_accountInfo">
-                <img src="" alt="Profile Image" id="blockPopUp_profileImage">
-                <div id="blockPopUp_nameContainer">
-                    <h5 id="blockPopUp_profileName"></h5>
-                    <h6 id="blockPopUp_profileUsername"></h6>
+        <div class="content">
+            <h2 class="message">Block this user?</h2>
+            <div class="accountInfo">
+                <img src="" alt="Profile Image" class="profileImage">
+                <div class="nameContainer">
+                    <h5 class="profileName">dsafdsafdsa</h5>
+                    <h6 class="profileUsername">fdsafdsa</h6>
                 </div>
             </div>
-            <button type="button" id="blockPopUp_yesButton">Yes</button>
-            <button type="button" id="blockPopUp_noButton">No</button>
+            <button type="button" class="leftButton">Yes</button>
+            <button type="button" class="rightButton">No</button>
         </div>
     </section>
 
     <!---------------REPORT POPUP----------------->
     <section class="reportPopUp off" id="reportPopUp">
-        <fieldset id="reportPopUp_content">
-            <div id="reportPopUp_message">Report reason:</div>
-            <select id="reportPopUp_form">
+        <fieldset class="content">
+            <h2 class="message">Report reason:</h2>
+            <select class="form">
                 <option value="spam">Spam</option>
                 <option value="harassment">Harassment</option>
                 <option value="sexual content">Sexual content</option>
@@ -105,24 +134,24 @@
                 <option value="animal abuse">Animal abuse</option>
                 <option value="promoting terrorism">Promotes terrorism</option>
             </select>
-            <button type="button" id="reportPopUp_confirmButton">Confirm</button>
-            <button type="button" id="reportPopUp_cancelButton">Cancel</button>
+            <button type="button" class="leftButton">Confirm</button>
+            <button type="button" class="rightButton">Cancel</button>
         </fieldset>
     </section>
 
-    <!----------------REPORT CONFIRMATION----------------->
+    <!----------------CONFIRM REPORT POPUP----------------->
     <section class="confirmReportPopUp off" id="confirmReportPopUp">
-        <div id="confirmReportPopUp_content">
-            <h2 id="confirmReportPopUp_message">Are you sure you want to report this user for <strong id="confirmReportPopUp_message_reason">reason</strong>?<br> False reports will be prosecuted</h2>
-            <div id="confirmReportPopUp_accountInfo">
-                <img src="pics/1.jpg" alt="Profile Image" id="confirmReportPopUp_profileImage">
-                <div id="confirmReportPopUp_nameContainer">
-                    <h5 id="confirmReportPopUp_profileName">Jenny</h5>
-                    <h6 id="confirmReportPopUp_profileUsername">@fdsafdslai</h6>
+        <div class="content">
+            <h2 class="message">Are you sure you want to report this user for <strong id="reason">reason</strong>?<br> False reports will be prosecuted</h2>
+            <div class="accountInfo">
+                <img src="" alt="Profile Image" class="profileImage">
+                <div class="nameContainer">
+                    <h5 class="profileName">Jenny</h5>
+                    <h6 class="profileUsername">@fdsafdslai</h6>
                 </div>
             </div>
-            <button type="button" id="confirmReportPopUp_yesButton">Yes</button>
-            <button type="button" id="confirmReportPopUp_noButton">No</button>
+            <button type="button" class="leftButton">Yes</button>
+            <button type="button" class="rightButton">No</button>
         </div>
     </section>
 
