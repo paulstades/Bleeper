@@ -1,6 +1,6 @@
 // -------------------------GLOBAL VARIABLES-----------------------------
 
-const maleNames = [
+const namesList = [
     "James",
     "John",
     "Robert",
@@ -300,10 +300,7 @@ const maleNames = [
     "Terrence",
     "Enrique",
     "Freddie",
-    "Wade"
-];
-
-const femaleNames = [
+    "Wade",
     "Mary",
     "Patricia",
     "Linda",
@@ -606,510 +603,7 @@ const femaleNames = [
     "Claire"
 ];
 
-const firstNames = [maleNames, femaleNames];
 
-const lastNames = [
-    "Smith",
-    "Johnson",
-    "Williams",
-    "Brown",
-    "Jones",
-    "Garcia",
-    "Miller",
-    "Davis",
-    "Rodriguez",
-    "Martinez",
-    "Hernandez",
-    "Lopez",
-    "Gonzalez",
-    "Wilson",
-    "Anderson",
-    "Thomas",
-    "Taylor",
-    "Moore",
-    "Jackson",
-    "Martin",
-    "Lee",
-    "Perez",
-    "Thompson",
-    "White",
-    "Harris",
-    "Sanchez",
-    "Clark",
-    "Ramirez",
-    "Lewis",
-    "Robinson",
-    "Walker",
-    "Young",
-    "Allen",
-    "King",
-    "Wright",
-    "Scott",
-    "Torres",
-    "Nguyen",
-    "Hill",
-    "Flores",
-    "Green",
-    "Adams",
-    "Nelson",
-    "Baker",
-    "Hall",
-    "Rivera",
-    "Campbell",
-    "Mitchell",
-    "Carter",
-    "Roberts",
-    "Gomez",
-    "Phillips",
-    "Evans",
-    "Turner",
-    "Diaz",
-    "Parker",
-    "Cruz",
-    "Edwards",
-    "Collins",
-    "Reyes",
-    "Stewart",
-    "Morris",
-    "Morales",
-    "Murphy",
-    "Cook",
-    "Rogers",
-    "Gutierrez",
-    "Ortiz",
-    "Morgan",
-    "Cooper",
-    "Peterson",
-    "Bailey",
-    "Reed",
-    "Kelly",
-    "Howard",
-    "Ramos",
-    "Kim",
-    "Cox",
-    "Ward",
-    "Richardson",
-    "Watson",
-    "Brooks",
-    "Chavez",
-    "Wood",
-    "James",
-    "Bennett",
-    "Gray",
-    "Mendoza",
-    "Ruiz",
-    "Hughes",
-    "Price",
-    "Alvarez",
-    "Castillo",
-    "Sanders",
-    "Patel",
-    "Myers",
-    "Long",
-    "Ross",
-    "Foster",
-    "Jimenez",
-    "Powell",
-    "Jenkins",
-    "Perry",
-    "Russell",
-    "Sullivan",
-    "Bell",
-    "Coleman",
-    "Butler",
-    "Henderson",
-    "Barnes",
-    "Gonzales",
-    "Fisher",
-    "Vasquez",
-    "Simmons",
-    "Romero",
-    "Jordan",
-    "Patterson",
-    "Alexander",
-    "Hamilton",
-    "Graham",
-    "Reynolds",
-    "Griffin",
-    "Wallace",
-    "Moreno",
-    "West",
-    "Cole",
-    "Hayes",
-    "Bryant",
-    "Herrera",
-    "Gibson",
-    "Ellis",
-    "Tran",
-    "Medina",
-    "Aguilar",
-    "Stevens",
-    "Murray",
-    "Ford",
-    "Castro",
-    "Marshall",
-    "Owens",
-    "Harrison",
-    "Fernandez",
-    "McDonald",
-    "Woods",
-    "Washington",
-    "Kennedy",
-    "Wells",
-    "Vargas",
-    "Henry",
-    "Chen",
-    "Freeman",
-    "Webb",
-    "Tucker",
-    "Guzman",
-    "Burns",
-    "Crawford",
-    "Olson",
-    "Simpson",
-    "Porter",
-    "Hunter",
-    "Gordon",
-    "Mendez",
-    "Silva",
-    "Shaw",
-    "Snyder",
-    "Mason",
-    "Dixon",
-    "Munoz",
-    "Hunt",
-    "Hicks",
-    "Holmes",
-    "Palmer",
-    "Wagner",
-    "Black",
-    "Robertson",
-    "Boyd",
-    "Rose",
-    "Stone",
-    "Salazar",
-    "Fox",
-    "Warren",
-    "Mills",
-    "Meyer",
-    "Rice",
-    "Schmidt",
-    "Garza",
-    "Daniels",
-    "Ferguson",
-    "Nichols",
-    "Stephens",
-    "Soto",
-    "Weaver",
-    "Ryan",
-    "Gardner",
-    "Payne",
-    "Grant",
-    "Dunn",
-    "Kelley",
-    "Spencer",
-    "Hawkins",
-    "Arnold",
-    "Pierce",
-    "Vazquez",
-    "Hansen",
-    "Peters",
-    "Santos",
-    "Hart",
-    "Bradley",
-    "Knight",
-    "Elliott",
-    "Cunningham",
-    "Duncan",
-    "Armstrong",
-    "Hudson",
-    "Carroll",
-    "Lane",
-    "Riley",
-    "Andrews",
-    "Alvarado",
-    "Ray",
-    "Delgado",
-    "Berry",
-    "Perkins",
-    "Hoffman",
-    "Johnston",
-    "Matthews",
-    "Pena",
-    "Richards",
-    "Contreras",
-    "Willis",
-    "Carpenter",
-    "Lawrence",
-    "Sandoval",
-    "Guerrero",
-    "George",
-    "Chapman",
-    "Rios",
-    "Estrada",
-    "Ortega",
-    "Watkins",
-    "Greene",
-    "Nunez",
-    "Wheeler",
-    "Valdez",
-    "Harper",
-    "Burke",
-    "Larson",
-    "Santiago",
-    "Maldonado",
-    "Morrison",
-    "Franklin",
-    "Carlson",
-    "Austin",
-    "Dominguez",
-    "Carr",
-    "Lawson",
-    "Jacobs",
-    "Obrien",
-    "Lynch",
-    "Singh",
-    "Vega",
-    "Bishop",
-    "Montgomery",
-    "Oliver",
-    "Jensen",
-    "Harvey",
-    "Williamson",
-    "Gilbert",
-    "Dean",
-    "Sims",
-    "Espinoza",
-    "Howell",
-    "Li",
-    "Wong",
-    "Reid",
-    "Hanson",
-    "Le",
-    "McCoy",
-    "Garrett",
-    "Burton",
-    "Fuller",
-    "Wang",
-    "Weber",
-    "Welch",
-    "Rojas",
-    "Lucas",
-    "Marquez",
-    "Fields",
-    "Park",
-    "Yang",
-    "Little",
-    "Banks",
-    "Padilla",
-    "Day",
-    "Walsh",
-    "Bowman",
-    "Schultz",
-    "Luna",
-    "Fowler",
-    "Mejia",
-    "Davidson",
-    "Acosta",
-    "Brewer",
-    "May",
-    "Holland",
-    "Juarez",
-    "Newman",
-    "Pearson",
-    "Curtis",
-    "Cortez",
-    "Douglas",
-    "Schneider",
-    "Joseph",
-    "Barrett",
-    "Navarro",
-    "Figueroa",
-    "Keller",
-    "Avila",
-    "Wade",
-    "Molina",
-    "Stanley",
-    "Hopkins",
-    "Campos",
-    "Barnett",
-    "Bates",
-    "Chambers",
-    "Caldwell",
-    "Beck",
-    "Lambert",
-    "Miranda",
-    "Byrd",
-    "Craig",
-    "Ayala",
-    "Lowe",
-    "Frazier",
-    "Powers",
-    "Neal",
-    "Leonard",
-    "Gregory",
-    "Carrillo",
-    "Sutton",
-    "Fleming",
-    "Rhodes",
-    "Shelton",
-    "Schwartz",
-    "Norris",
-    "Jennings",
-    "Watts",
-    "Duran",
-    "Walters",
-    "Cohen",
-    "McDaniel",
-    "Moran",
-    "Parks",
-    "Steele",
-    "Vaughn",
-    "Becker",
-    "Holt",
-    "Deleon",
-    "Barker",
-    "Terry",
-    "Hale",
-    "Leon",
-    "Hail",
-    "Benson",
-    "Haynes",
-    "Horton",
-    "Miles",
-    "Lyons",
-    "Pham",
-    "Graves",
-    "Bush",
-    "Thornton",
-    "Wolfe",
-    "Warner",
-    "Cabrera",
-    "McKinney",
-    "Mann",
-    "Zimmerman",
-    "Dawson",
-    "Lara",
-    "Fletcher",
-    "Page",
-    "McCarthy",
-    "Love",
-    "Robles",
-    "Cervantes",
-    "Solis",
-    "Erickson",
-    "Reeves",
-    "Chang",
-    "Klein",
-    "Salinas",
-    "Fuentes",
-    "Baldwin",
-    "Daniel",
-    "Simon",
-    "Velasquez",
-    "Hardy",
-    "Higgins",
-    "Aguirre",
-    "Lin",
-    "Cummings",
-    "Chandler",
-    "Sharp",
-    "Barber",
-    "Bowen",
-    "Ochoa",
-    "Dennis",
-    "Robbins",
-    "Liu",
-    "Ramsey",
-    "Francis",
-    "Griffith",
-    "Paul",
-    "Blair",
-    "O'Connor",
-    "Cardenas",
-    "Pacheco",
-    "Cross",
-    "Calderon",
-    "Quinn",
-    "Moss",
-    "Swanson",
-    "Chan",
-    "Rivas",
-    "Khan",
-    "Rodgers",
-    "Serrano",
-    "Fitzgerald",
-    "Rosales",
-    "Stevenson",
-    "Christensen",
-    "Manning",
-    "Gill",
-    "Curry",
-    "McLaughlin",
-    "Harmon",
-    "McGee",
-    "Gross",
-    "Doyle",
-    "Garner",
-    "Newton",
-    "Burgess",
-    "Reese",
-    "Walton",
-    "Blake",
-    "Trujillo",
-    "Adkins",
-    "Brady",
-    "Goodman",
-    "Roman",
-    "Webster",
-    "Goodwin",
-    "Fischer",
-    "Huang",
-    "Potter",
-    "de la Cruz",
-    "Montoya",
-    "Todd",
-    "Wu",
-    "Hines",
-    "Mullins",
-    "Castaneda",
-    "Malone",
-    "Cannon",
-    "Tate",
-    "Mack",
-    "Sherman",
-    "Hubbard",
-    "Hodges",
-    "Zhang",
-    "Guerra",
-    "Wolf",
-    "Valencia",
-    "Saunders",
-    "Franco",
-    "Rowe",
-    "Gallagher",
-    "Farmer",
-    "Hammond",
-    "Hampton",
-    "Townsend",
-    "Ingram",
-    "Wise",
-    "Gallegos",
-    "Clarke",
-    "Barton",
-    "Schroeder",
-    "Maxwell",
-    "Waters",
-    "Logan",
-    "Camacho",
-    "Strickland",
-    "Norman",
-    "Person",
-    "Colon",
-    "Parsons",
-    "Frank",
-    "Harrington"
-]
 
 const prefixM = [
     "lord",
@@ -1159,7 +653,6 @@ const postfixM = [
 
 const postfixF = [
     "thegreat"
-
 ]
 
 const adj = [
@@ -1499,64 +992,6 @@ const noun = [
     "champagne"
 ]
 
-const celebs = [
-    "Scarlett Johansson",
-    "Robert Downey Jr.",
-    "Samuel L. Jackson",
-    "Chris Hemsworth",
-    "Chris Pratt",
-    "Tom Cruise",
-    "Chris Evans",
-    "Zoe Saldaña",
-    "Tom Hanks",
-    "Vin Diesel",
-    "Stan Lee",
-    "Frank Welker",
-    "John Ratzenberger",
-    "Bob Bergen",
-    "Andy Serkis",
-    "Benedict Cumberbatch",
-    "Alan Tudyk",
-    "Warwick Davis",
-    "Jon Favreau",
-    "Paul Bettany",
-    "Dwayne Johnson",
-    "Idris Elba",
-    "Don Cheadle",
-    "Keanu Reeves",
-    "Bruce Willis",
-    "Will Smith",
-    "Sandra Bullock",
-    "Harrison Ford",
-    "Jack Nicholson",
-    "Leonardo DiCaprio",
-    "Johnny Depp",
-    "Jackie Chan",
-    "Cameron Diaz",
-    "Denzel Washington",
-    "Aamir Khan",
-    "Jim Carrey",
-    "Arnold Schwarzenegger",
-    "Mel Gibson",
-    "Brad Pitt",
-    "Leonardo DiCaprio ",
-    "Matt Damon",
-    "Jennifer Lawrence",
-    "Ben Affleck",
-    "Melissa McCarthy",
-    "Shah Rukh Khan",
-    "Bradley Cooper",
-    "Adam Sandler",
-    "Amitabh Bachchan",
-    "Salman Khan",
-    "Mark Wahlberg",
-    "Akshay Kumar",
-    "George Clooney",
-    "Sofía Vergara",
-    "Ryan Reynolds",
-    "Lin-Manuel Miranda"
-]
-
 const verb = [
     "have",
     "do",
@@ -1724,18 +1159,16 @@ const verb = [
     "wreck"
 ]
 
-const profileArray = [];
-
 const bleepArray = [];
 
 const commentsSectionArray = [];
 
-let i = 0; // numerical value tied to bleep number
+let b = 0; // bleep index
 
 let targetUsername;
 
 function bleepTemplate() {
-return `<div class="bleep" id=bleep${i}>
+return `<div class="bleep" id=bleep${b}>
     <img class="profileImage" alt="Profile Image">
     <header class="infoContainer">
         <h5 class="profileName"></h5>
@@ -1768,8 +1201,8 @@ return `<div class="bleep" id=bleep${i}>
     </div>
 </div>`;}
 
-function commentsSectionTemplate(i) {
-  return`<section class="commentsSection" id="commentsSection${i}">
+function commentsSectionTemplate(b) {
+  return`<section class="commentsSection" id="commentsSection${b}">
         <div class="commentsSectionButtons">
             <button class="hideButton">Hide</button>
             <button class="moreButton">More >></button>
@@ -1794,49 +1227,176 @@ class Profile {
 
 class BleepList {
     constructor (path){
-        this.self = document.querySelector('#bleepList');
+        this.itself = document.querySelector('#bleepList');
+    }
+
+    generateNewBleeps(numberOfBleeps) {
+        for (const initial=b; b<initial+numberOfBleeps; b++) {
+            setupBleep(b, this.itself, 'beforeend', bleepTemplate());
+        }
     }
 
 }
 
 class Bleep {
     constructor(index) {
-        this.index = index;
-        this.timestampValue = Date.now();
-        this.numberOfShares = x(300);
-        this.numberOfComments = x(130);
-        this.numberOfLikes = x(20000);
-        this.bleep = document.querySelector(`#bleep${index}`);
-        this.profileImage = this.bleep.querySelector(".profileImage");
-        this.profileName = this.bleep.querySelector(".profileName");
-        this.profileUsername = this.bleep.querySelector(".profileUsername");
-        this.timestamp = this.bleep.querySelector(".timestamp");
-        this.topRightButton = this.bleep.querySelector(".topRightButton");
-        this.topRightPopUp = this.bleep.querySelector(".topRightPopUp");
-        this.blockButton = this.bleep.querySelector(".blockButton");
-        this.reportButton = this.bleep.querySelector(".reportButton");
-        this.shareButton = this.bleep.querySelector(".shareButton");
-        this.shareCounter = this.bleep.querySelector(".shareCounter");
-        this.commentButton = this.bleep.querySelector(".commentButton");
-        this.commentButtonImage = this.bleep.querySelector('.commentButtonImage')
-        this.commentCounter = this.bleep.querySelector(".commentCounter");
-        this.likeButton = this.bleep.querySelector(".likeButton");
-        this.likeButtonImage = this.bleep.querySelector('.likeButtonImage')
-        this.likeCounter = this.bleep.querySelector(".likeCounter");
+        this.index;
+        this.time;
+        this.image;
+        this.name;
+        this.username;
+        this.message;
+        this.shares;
+        this.comments;
+        this.likes;
+        this.itself = document.querySelector(`#bleep${index}`);
+        this.profileImage = this.itself.querySelector(".profileImage");
+        this.profileName = this.itself.querySelector(".profileName");
+        this.profileUsername = this.itself.querySelector(".profileUsername");
+        this.timestamp = this.itself.querySelector(".timestamp");
+        this.topRightButton = this.itself.querySelector(".topRightButton");
+        this.topRightPopUp = this.itself.querySelector(".topRightPopUp");
+        this.blockButton = this.itself.querySelector(".blockButton");
+        this.reportButton = this.itself.querySelector(".reportButton");
+        this.shareButton = this.itself.querySelector(".shareButton");
+        this.shareCounter = this.itself.querySelector(".shareCounter");
+        this.commentButton = this.itself.querySelector(".commentButton");
+        this.commentButtonImage = this.itself.querySelector('.commentButtonImage')
+        this.commentCounter = this.itself.querySelector(".commentCounter");
+        this.likeButton = this.itself.querySelector(".likeButton");
+        this.likeButtonImage = this.itself.querySelector('.likeButtonImage')
+        this.likeCounter = this.itself.querySelector(".likeCounter");
         
     }
 
+    setValues() {
+        this.image = imagePicker();
+        this.name = namePicker();
+        this.username = usernamePicker(this.name);
+        this.time = Date.now();
+        this.shares = x(300);
+        this.comments = x(150);
+        this.likes = x(19500)+500;
+    }
+
+    updateValues() {
+        this.profileImage.src = this.image;
+        this.profileName.innerText = this.name;
+        this.profileUsername.innerText = this.username;
+        this.timestamp.innerText = this.time;
+        this.shareCounter.innerText = this.shares+'+';
+        this.commentCounter.innerText = this.comments;
+        this.likeCounter.innerText = this.likes;
+    }
+
+    setEventListeners() {
+        this.topRightButton.addEventListener('click', e =>{
+            toggleDisplayNoneOf(this.topRightPopUp);
+        })
+        this.blockButton.addEventListener('click', e =>{
+            toggleDisplayNoneOf(blockPopUp, this.topRightPopUp);
+            toggleBodyNoScroll();
+            this.passProfileInfoTo(blockPopUp2);
+        })
+        this.reportButton.addEventListener('click', e => {
+            toggleDisplayNoneOf(reportPopUp, this.topRightPopUp);
+            toggleBodyNoScroll();
+            this.passInfoTo(confirmReportPopUp2);
+        })
+        this.likeButton.addEventListener('click', e => {
+            if (this.likeButtonImage.src === 'http://127.0.0.1:5500/svgs/like_off.svg'){
+                this.likeButtonImage.src = 'http://127.0.0.1:5500/svgs/like_on.svg';
+                this.likes++;
+            }else{
+                this.likeButtonImage.src = 'http://127.0.0.1:5500/svgs/like_off.svg';
+                this.likes--;
+            }
+            this.updateNumbers();
+        })
+        this.commentButton.addEventListener("click", e => {
+            this.generateCommentsSection(); 
+        })
+    }
+
+    passInfoTo (element){
+        element.profileImage.src = this.image;
+        element.profileName.innerText = this.name;
+        element.profileUsername.innerText = this.username;
+        targetUsername = this.username;
+    }
+
     updateNumbers() {
-      this.timestamp.innerText = this.timestampValue;
-      this.shareCounter.innerText = this.numberOfShares+'+';
-      this.commentCounter.innerText = this.numberOfComments;
-      this.likeCounter.innerText = this.numberOfLikes;
+      this.timestamp.innerText = this.time;
+      this.shareCounter.innerText = this.shares+'+';
+      this.commentCounter.innerText = this.comments;
+      this.likeCounter.innerText = this.likes;
+    }
+
+    generateCommentsSection() {
+        this.itself.insertAdjacentHTML('afterend', commentsSectionTemplate(b));
+        commentsSectionArray[b] = new CommentsSection(b);
+        commentsSectionArray[b].setEventListeners();
+    }
+}
+
+class Navbar {
+    constructor(id) {
+        this.itself = document.querySelector(`${id}`);
+        this.leftButton = this.itself.querySelector(`.leftButton`);
+        this.leftButtonImage = this.leftButton.querySelector(`img`);
+        this.centerButton = this.itself.querySelector(`.centerButton`);
+        this.rightButton = this.itself.querySelector(`.rightButton`);
+        this.rightButtonImage = this.rightButton.querySelector(`img`);
+    }
+}
+
+class MainNav extends Navbar {
+    setEventListeners(){
+        this.centerButton.addEventListener('click', e => {
+            toggleDisplayNoneOf(composeBleep.itself, composeNav.itself);
+            toggleBodyNoScroll();
+        })
+    }
+}
+
+class ComposeNav extends Navbar {
+    
+    setEventListeners(){
+        this.leftButton.addEventListener('click', e => {
+            toggleDisplayNoneOf(composeBleep.itself, composeNav.itself);
+            toggleBodyNoScroll();
+        })
+    }
+
+    updateCharsLeftCounter() {
+        const charsLeft = 300 - composeBleep.input.value.length;
+        if (charsLeft !== 1){
+            this.centerButton.innerText = `${charsLeft} characters left`;
+        }else{
+            this.centerButton.innerText = `1 character left`;
+        }
+    }
+}
+
+class ComposeBleep {
+    constructor(id) {
+        this.itself = document.querySelector(`${id}`);
+        this.profileImage = this.itself.querySelector(`.profileImage`);
+        this.profileName = this.itself.querySelector(`.profileUsername`);
+        this.profileUsername = this.itself.querySelector(`.profileUsername`);
+        this.input = this.itself.querySelector(`input`);
+    }
+
+    setEventListeners() {
+        this.input.addEventListener('keydown', e => {
+                composeNav.updateCharsLeftCounter();
+        })
     }
 }
 
 class PopUp {
     constructor(input) {
-        this.self = document.querySelector(`#${input}`);
+        this.itself = document.querySelector(`#${input}`);
         this.profileImage = document.querySelector(`#${input}_profileImage`);
         this.profileName = document.querySelector(`#${input}_profileName`);
         this.profileUsername = document.querySelector(`#${input}_profileUsername`);
@@ -1845,12 +1405,23 @@ class PopUp {
 
 class CommentsSection {
     constructor (index) {
-      this.self = document.querySelector(`#commentsSection${index}`);
-      this.hideButton = this.self.querySelector(`.hideButton`);
-      this.moreButton = this.self.querySelector(`.moreButton`);
+      this.itself = document.querySelector(`#commentsSection${index}`);
+      this.hideButton = this.itself.querySelector(`.hideButton`);
+      this.moreButton = this.itself.querySelector(`.moreButton`);
+    }
+
+    generateNewBleeps(){
+        for (const initial=b; b<initial+3; b++) {
+            setupBleep(b, this.itself, 'beforeend', bleepTemplate());
+        }
+    }
+
+    setEventListeners() {
+    this.hideButton.addEventListener('click', e=> {
+        toggleDisplayNoneOf(this.itself);
+    })
     }
 }
-
 
 // -------------------------GLOBAL FUNCTIONS-----------------------------
 
@@ -1862,27 +1433,14 @@ function toggleDisplayNoneOf() {
     }
 }
 
-function setConfirmReportMessageReason(){
-    confirmReportMessageReason.innerText = reportPopUpForm.value;
+function setconfirmReportPopUpMessageReason(){
+    confirmReportPopUpMessageReason.innerText = reportPopUpForm.value;
 }
 
-function updateCharsLeftCounter() {
-    const charsLeft = countCharsLeft();
-    if (charsLeft !== 1){
-        composeNavCharsLeftCounter.placeholder = `${charsLeft} characters left`;
-    }else{
-        composeNavCharsLeftCounter.placeholder = `1 character left`;
-    }
-}
-
-function countCharsLeft() {
-    return 300 - composeInput.value.length;
-}
 
 // ---------------BUTTONS
 
-const navComposeButton = document.querySelector("#mainNav_composeButton");
-const navMenuButton = document.querySelector("#mainNav_sidebarButton");
+const navComposeButton = document.querySelector("#centerButton");
 const composeCancelButton = document.querySelector("#compose_cancelButton");
 const composeSendButton = document.querySelector("#compose_sendButton");
 const composeNavEraseButton = document.querySelector("#composeNav_eraseButton");
@@ -1894,51 +1452,36 @@ const blockPopUpYesButton = document.querySelector("#blockPopUp_yesButton");
 const blockPopUpNoButton = document.querySelector("#blockPopUp_noButton");
 const reportPopUpCancelButton = document.querySelector("#reportPopUp_cancelButton");
 const reportPopUpConfirmButton = document.querySelector("#reportPopUp_confirmButton");
-const confirmReportYesButton = document.querySelector("#confirmReport_yesButton");
-const confirmReportNoButton = document.querySelector("#confirmReport_noButton");
+const confirmReportPopUpYesButton = document.querySelector("#confirmReportPopUp_yesButton");
+const confirmReportPopUpNoButton = document.querySelector("#confirmReportPopUp_noButton");
 
 // ---------------ELEMENTS
-const blockPopUp2 = new PopUp("blockPopUp");
-const confirmReport2 = new PopUp("confirmReport");
-const bleepList = document.querySelector("#bleepList");
-const composeContent = document.querySelector("#composeContent");
-const composeInput = document.querySelector("#compose_input");
-const composeNav = document.querySelector("#composeNav");
-const sidebar = document.querySelector("#sidebar");
-const sendWarning = document.querySelector("#sendWarning");
-const eraseWarning = document.querySelector("#eraseWarning");
-const composeNavCharsLeftCounter = document.querySelector("#composeNav_charsLeftCounter");
-const blockPopUp = blockPopUp2.self
-const blockProfileImage = document.querySelector("#blockPopUp_profileImage");
-const blockProfileName = document.querySelector("#blockPopUp_profileName");
-const blockProfileUsername = document.querySelector("#blockPopUp_profileUsername");
-const reportProfileImage = document.querySelector("#confirmReport_profileImage");
-const reportProfileName = document.querySelector("#confirmReport_profileName");
-const reportProfileUsername = document.querySelector("#confirmReport_profileUsername");
-const reportPopUp = document.querySelector("#reportPopUp");
-const confirmReport = confirmReport2.self;
-const confirmReportMessageReason = document.querySelector("#confirmReport_message_reason");
-const reportPopUpForm = document.querySelector("#reportPopUp_form");
+const bleepList = new BleepList('#bleepList');
+const mainNav = new MainNav(`#mainNav`);
+const composeBleep = new ComposeBleep(`#composeBleep`);
+const composeNav = new ComposeNav(`#composeNav`);
+const blockPopUp = new PopUp("blockPopUp");
+const confirmReportPopUp = new PopUp("confirmReportPopUp");
 
-
-// ! don't like this
 // ----------------------------ONLOAD-----------------------------
 
 window.onload=pageSetup();
 
 function pageSetup() {
     window.scrollTo(0, 0);
-    generateBleeps(10);
+    bleepList.generateNewBleeps(10);
+    mainNav.setEventListeners();
+    composeNav.setEventListeners();
 }
 
 function generateBleeps(numberOfBleeps, place) {
   if (place) {
-    for (const initial=i; i<initial+numberOfBleeps; i++) {
-        setupBleep(i, place, 'afterbegin', bleepTemplate());
+    for (const initial=b; b<initial+numberOfBleeps; b++) {
+        setupBleep(b, place, 'afterbegin', bleepTemplate());
     }
   }else{
-    for (const initial=i; i<initial+numberOfBleeps; i++) {
-      setupBleep(i, bleepList, 'beforeend', bleepTemplate());
+    for (const initial=b; b<initial+numberOfBleeps; b++) {
+      setupBleep(b, bleepList, 'beforeend', bleepTemplate());
   }
 }
 }
@@ -1953,8 +1496,8 @@ const action = entries => {
     let targ = entries[0];
     if (targ.isIntersecting) {
         viewport.unobserve(targetBleep);
-        generateBleeps(10);
-        targetBleep = document.querySelectorAll(".bleep")[i-2];
+        bleepList.generateNewBleeps(10);
+        targetBleep = document.querySelectorAll(".bleep")[b-2];
         viewport.observe(targetBleep);
     }
 }
@@ -1964,102 +1507,37 @@ const options = {
 }
 
 const viewport = new IntersectionObserver(action, options);
-let targetBleep = document.querySelectorAll(".bleep")[i-2];
+let targetBleep = document.querySelectorAll(".bleep")[b-2];
 
 viewport.observe(targetBleep);
 
 // ----------------------------GLOBAL LISTENERS-----------------------------
 
 //-----------MAIN PAGE
-navComposeButton.addEventListener("click", e => {
-    toggleDisplayNoneOf(composeContent, bleepList);
-})
-
-navMenuButton.addEventListener("click", e => {
-    toggleDisplayNoneOf(sidebar);
-})
 
 //-----------COMPOSE PAGE
-composeCancelButton.addEventListener("click", e => {
-    toggleDisplayNoneOf(composeContent, bleepList);
-})
 
-composeSendButton.addEventListener("click", e => {
-    toggleDisplayNoneOf(sendWarning);
-})
 
-sendWarningNoButton.addEventListener("click", e => {
-    toggleDisplayNoneOf(sendWarning);
-})
-
-sendWarningYesButton.addEventListener("click", e => {
-    toggleDisplayNoneOf(sendWarning, composeContent, bleepList);
-})
-
-composeInput.addEventListener("keydown", e => {
-    updateCharsLeftCounter();
-});
-
-composeNavEraseButton.addEventListener("click", e => {
-    toggleDisplayNoneOf(eraseWarning);
-})
-
-eraseWarningYesButton.addEventListener("click", e => {
-    composeInput.value = null;
-    eraseWarning.classList.toggle("off");
-    updateCharsLeftCounter();
-})
-
-eraseWarningNoButton.addEventListener("click", e => {
-    toggleDisplayNoneOf(eraseWarning);
-})
-
-blockPopUpYesButton.addEventListener("click", e => {
-    blockUser(i);
-    toggleBodyNoScroll();
-    toggleDisplayNoneOf(blockPopUp);
+confirmReportPopUpYesButton.addEventListener("click", e => {
+    blockUser(b);
     i--;
+    toggleDisplayNoneOf(confirmReportPopUp);
 })
 
-blockPopUpNoButton.addEventListener("click", e => {
-    toggleDisplayNoneOf(blockPopUp);
-    toggleBodyNoScroll();
+confirmReportPopUpNoButton.addEventListener("click", e => {
+    toggleDisplayNoneOf(confirmReportPopUp);
 })
 
-reportPopUpCancelButton.addEventListener("click", e => {
-    toggleDisplayNoneOf(reportPopUp);
-})
-
-reportPopUpConfirmButton.addEventListener("click", e => {
-    setConfirmReportMessageReason();
-    toggleDisplayNoneOf(reportPopUp, confirmReport);
-    toggleBodyNoScroll();
-})
-
-confirmReportYesButton.addEventListener("click", e => {
-    blockUser(i);
-    i--;
-    toggleDisplayNoneOf(confirmReport);
-})
-
-confirmReportNoButton.addEventListener("click", e => {
-    toggleDisplayNoneOf(confirmReport);
-})
-
-//# backspace registers as -character after a long series of inputs
-
-navComposeButton.addEventListener("click", e => {
-    updateCharsLeftCounter();
-})
+//# backspace registers as -character after a long series of inputs`
 
 sendWarningYesButton.addEventListener("click", e => {
     composeInput.value = "";
     updateCharsLeftCounter();
 })
 
-function blockUser(i){
+function blockUser(b){
     const bleepUsername = document.querySelectorAll(".profileUsername");
-    for (let n=0; n<i; n++) {
+    for (let n=0; n<b; n++) {
         if (bleepUsername[n].innerText === targetUsername){
             bleepUsername[n].closest(".bleep").remove();
         }
@@ -2068,33 +1546,20 @@ function blockUser(i){
 
 // ----------------------------BLEEP CREATION------------------------------
 
-function setupBleep(i, place, position, content) {
+function setupBleep(b, place, position, content) {
     place.insertAdjacentHTML(position, content);
-    setInnerContent(i);
-    setEventListeners(i);
-}
-// function pushHTML(place, position, content) {
-//     place.insertAdjacentHTML(position, content);
-// }
-
-// ----------------------------bleep SETUP--------------------------------
-
-function setInnerContent(i){
-    bleepArray[i] = new Bleep(i);
-    createProfile(i);
-    setProfileInfo(i);
-    bleepArray[i].updateNumbers();
+    bleepArray[b] = new Bleep(b);
+    bleepArray[b].setValues();
+    bleepArray[b].updateValues();
+    bleepArray[b].setEventListeners();
 }
 
 // ----------------------------PROFILE CREATION------------------------------
 
-function createProfile(i){
-    const gender = genderPicker();
-    const image = imagePicker();
-    const firstName = namePicker(gender);
-    const lastName = namePicker();
-    const username = usernamePicker(firstName, lastName, gender);
-    profileArray[i] = new Profile(gender, image, firstName, lastName, username);
+function createProfile(b){
+    bleepArray[b].setValues();
+    bleepArray[b].updateValues();
+
 }
 
 //^ SATISFIED
@@ -2113,66 +1578,28 @@ function imagePicker() {
 }
 
 //^ SATISFIED
-function namePicker(gender) {
-    let y = x(300);
-    switch (gender){
-        case "male": return maleNames[y];
-        case "female": return femaleNames[y];
-        case undefined: y = x(500);
-            return lastNames[y];
-    }
+function namePicker() {
+    let n = x(600);
+    return namesList[n];
+
 }
 
 //# WORKS, Needs more options
-function usernamePicker(firstname, lastname, gender) {
-    let dice = x(4);
-    let suffix = x(100);
-    switch (dice){
-        case 0: result = `${firstname}${lastname}`;
-        break;
-        case 1: result = `${firstname}${lastname}${suffix}`;
-        break;
-        case 2:
-            if (gender==="male") {
-                y=x(prefixM.length);
-                result=`${prefixM[y]}${firstname}`;
-                break;
-            }else{
-                y=x(prefixF.length);
-                result=`${prefixF[y]}${firstname}`;
-                break;
-            }
-        case 3:
-            if (gender==="male") {
-                y=x(postfixM.length);
-                result=`${firstname}${postfixM[y]}`;
-                break;
-            }else{
-                y=x(postfixF.length);
-                result=`${firstname}${postfixF[y]}`;
-                break;
-            }
-    }
-    return '@'+result.toLowerCase();
+function usernamePicker(name) {
+    return '@'+name.toLowerCase();
 }
 
-function setProfileInfo() {
-    bleepArray[i].profileImage.src = profileArray[i].image;
-    bleepArray[i].profileName.innerText = profileArray[i].fullName;
-    bleepArray[i].profileUsername.innerText = `${profileArray[i].username}`;
-}
-
-function setEventListeners(i){
+function setEventListeners(b){
     //------------Buttons
-    const topRightButton = bleepArray[i].topRightButton;
-    const shareButton = bleepArray[i].shareButton
-    const commentButton = bleepArray[i].commentButton;
-    const likeButton = bleepArray[i].likeButton;
-    const blockButton = bleepArray[i].blockButton;
-    const reportButton = bleepArray[i].reportButton;
+    const topRightButton = bleepArray[b].topRightButton;
+    const shareButton = bleepArray[b].shareButton
+    const commentButton = bleepArray[b].commentButton;
+    const likeButton = bleepArray[b].likeButton;
+    const blockButton = bleepArray[b].blockButton;
+    const reportButton = bleepArray[b].reportButton;
 
     //------------Elements
-    const topRightPopUp = bleepArray[i].topRightPopUp;
+    const topRightPopUp = bleepArray[b].topRightPopUp;
 
     //------------Listeners
     let firstTime = true;
@@ -2185,70 +1612,41 @@ function setEventListeners(i){
     blockButton.addEventListener("click", e => {
         toggleDisplayNoneOf(blockPopUp, topRightPopUp);
         toggleBodyNoScroll();
-        passProfileInfoTo(blockPopUp2, i);
+        passProfileInfoTo(blockPopUp2, b);
     })
 
-//# I don't like confirmReport2
+//# I don't like confirmReportPopUp2
     reportButton.addEventListener("click", e => {
         toggleDisplayNoneOf(reportPopUp, topRightPopUp);
         toggleBodyNoScroll();
-        passProfileInfoTo(confirmReport2, i);
+        passProfileInfoTo(confirmReportPopUp2, b);
     })
 
-    if (bleepArray[i].bleep.closest('.commentsSection') === null) {
+    if (bleepArray[b].itself.closest('.commentsSection') === null) {
         commentButton.addEventListener("click", e => {
         if (!firstTime) {
-            if (bleepArray[i].commentButtonImage.src === 'http://127.0.0.1:5500/svgs/comment_off.svg'){
-            bleepArray[i].commentButtonImage.src = 'http://127.0.0.1:5500/svgs/comment_on.svg';
+            if (bleepArray[b].commentButtonImage.src === 'http://127.0.0.1:5500/svgs/comment_off.svg'){
+            bleepArray[b].commentButtonImage.src = 'http://127.0.0.1:5500/svgs/comment_on.svg';
             }else{
-            bleepArray[i].commentButtonImage.src = 'http://127.0.0.1:5500/svgs/comment_off.svg';
+            bleepArray[b].commentButtonImage.src = 'http://127.0.0.1:5500/svgs/comment_off.svg';
             }
-            return toggleDisplayNoneOf(commentsSectionArray[i].self);
+            return toggleDisplayNoneOf(commentsSectionArray[b].itself);
         }else{
-            bleepArray[i].commentButtonImage.src = 'http://127.0.0.1:5500/svgs/comment_on.svg';
-            setupCommentsSection(i);
+            bleepArray[b].commentButtonImage.src = 'http://127.0.0.1:5500/svgs/comment_on.svg';
+            setupCommentsSection(b);
             firstTime=false;    
         }
         })
     }else{
         commentButton.addEventListener("click", e =>{
-            localStorage.setItem('bleepImage', profileArray[i].image);
-            localStorage.setItem('bleepName', profileArray[i].fullName);
-            localStorage.setItem('bleepUsername', profileArray[i].username);
-            localStorage.setItem('bleepTimestamp', bleepArray[i].timestampValue);
-            localStorage.setItem('bleepShares', bleepArray[i].numberOfShares);
-            localStorage.setItem('bleepComments', bleepArray[i].numberOfComments);
-            localStorage.setItem('bleepLikes', bleepArray[i].numberOfLikes);
+            localStorage.setItem('bleepImage', profileArray[b].image);
+            localStorage.setItem('bleepName', profileArray[b].fullName);
+            localStorage.setItem('bleepUsername', profileArray[b].username);
+            localStorage.setItem('bleepTimestamp', bleepArray[b].time);
+            localStorage.setItem('bleepShares', bleepArray[b].shares);
+            localStorage.setItem('bleepComments', bleepArray[b].comments);
+            localStorage.setItem('bleepLikes', bleepArray[b].likes);
             window.open("/bleep.html","_self")
         })
     }
-
-    likeButton.addEventListener('click', e => {
-      if (bleepArray[i].likeButtonImage.src === 'http://127.0.0.1:5500/svgs/like_off.svg'){
-        bleepArray[i].likeButtonImage.src = 'http://127.0.0.1:5500/svgs/like_on.svg';
-        bleepArray[i].numberOfLikes++;
-      }else{
-        bleepArray[i].likeButtonImage.src = 'http://127.0.0.1:5500/svgs/like_off.svg';
-        bleepArray[i].numberOfLikes--;
-      }
-      bleepArray[i].updateNumbers();
-    })
-
-    //------------Functions
-
-    function passProfileInfoTo(element, i) {
-        element.profileImage.src = profileArray[i].image;
-        element.profileName.innerText = profileArray[i].fullName;
-        element.profileUsername.innerText = `@${profileArray[i].username}`;
-        targetUsername = `${profileArray[i].username}`;
-    }
-
-    function setupCommentsSection(i){
-      bleepArray[i].bleep.insertAdjacentHTML('afterend', commentsSectionTemplate(i));
-      commentsSectionArray[i] = new CommentsSection(i);
-      commentsSectionArray[i].hideButton.addEventListener("click", e => {toggleDisplayNoneOf(commentsSectionArray[i].self)})
-      generateBleeps(3, commentsSectionArray[i].self);
-
-    }
-
 }

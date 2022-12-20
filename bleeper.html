@@ -19,12 +19,10 @@
 </head>
 <body>
     <!-------------------NAVBAR------------------------>
-    <nav id="mainNav">
-        <button type="button" id="mainNav_sidebarButton"><img src="svgs/arrowup.svg"></button> 
-        <form>
-            <input type="text" id="mainNav_search" placeholder="Search">
-          </form>
-        <button type="button" id="mainNav_composeButton"><img src="svgs/plus.svg"></button> 
+    <nav class="nav" id="mainNav">
+        <button type="button" class="leftButton"><img src="svgs/cog.svg"></button> 
+        <button type="button" class="centerButton">Compose</button> 
+        <button type="button" class="rightButton"><img src="svgs/profile_placeholder.svg"></button> 
     </nav>
 
     <!-------------------LOGINPOPUP------------------------>
@@ -36,32 +34,24 @@
         </div>
     </section>
 
-    <!-----------------SIDE BAR---------------------->
-    <aside class="sidebar off" id="sidebar">
-        <button id="githubButton"><a href="https://github.com/"><img src="svgs/github.svg"></a></button>
-        <button id="settingsButton"><a href=settings.html><img src="svgs/cog.svg"></a></button>
-        <button id="yourProfileButton"><a href=yourProfile.html><img src="svgs/profile_placeholder.svg"></a></button>
-    </aside>
+    <!----------------COMPOSE BLEEP--------------------->
+    <div class="composeBleep off" id=composeBleep>
+        <img class="profileImage" src="pics/1.jpg" alt="Profile Image">
+        <header class="infoContainer">
+            <h5 class="profileName">You</h5>
+            <h6 class="profileUsername">@you</h6>
+            <time class="timestamp">In progress...</time>
+            <button class="topRightButton"><img src="svgs/cross.svg"></button>
+        </header>
+        <input type="text" id="inputText" placeholder="Your message here"></input>
+    </div>
 
-    <!----------------COMPOSE FORM--------------------->
-    <div class="composeContent off" id="composeContent">
-
-        <div class="compose" id="compose">
-            <button id="compose_cancelButton">Cancel</button>
-            <h1 id="compose_title">Compose</h1>
-            <button id="compose_sendButton">Send</button>
-            <textarea id="compose_input" spellcheck="true" maxlength="300" placeholder="Type here"></textarea>
-        </div>
-
-        <!---------------COMPOSE NAVBAR-------------------->
-        
-        <nav class="composeNav" id="composeNav">
-            <button type="button" id="composeNav_eraseButton"><img src="svgs/cross.svg"></button>
-            <form action="" class="composeNav_form">
-                <input type="text" id="composeNav_charsLeftCounter" readonly>
-            </form>
-            <button type="button" id="composeNav_attachButton"><img src="svgs/attachments.svg"></button>
-        </nav>
+    <!----------------COMPOSE NAV--------------------->
+    <nav class="nav off" id="composeNav">
+        <button type="button" class="leftButton"><img src="svgs/cross.svg"></button> 
+        <button type="button" class="centerButton">300 characters left</button> 
+        <button type="button" class="rightButton"><img src="svgs/arrowright_empty.svg"></button> 
+    </nav>
 
         <!----------------SEND WARNING--------------------->
 
@@ -121,18 +111,18 @@
     </section>
 
     <!----------------REPORT CONFIRMATION----------------->
-    <section class="confirmReport off" id="confirmReport">
-        <div id="confirmReport_content">
-            <h2 id="confirmReport_message">Are you sure you want to report this user for <strong id="confirmReport_message_reason">reason</strong>?<br> False reports will be prosecuted</h2>
-            <div id="confirmReport_accountInfo">
-                <img src="pics/1.jpg" alt="Profile Image" id="confirmReport_profileImage">
-                <div id="confirmReport_nameContainer">
-                    <h5 id="confirmReport_profileName">Jenny</h5>
-                    <h6 id="confirmReport_profileUsername">@fdsafdslai</h6>
+    <section class="confirmReportPopUp off" id="confirmReportPopUp">
+        <div id="confirmReportPopUp_content">
+            <h2 id="confirmReportPopUp_message">Are you sure you want to report this user for <strong id="confirmReportPopUp_message_reason">reason</strong>?<br> False reports will be prosecuted</h2>
+            <div id="confirmReportPopUp_accountInfo">
+                <img src="pics/1.jpg" alt="Profile Image" id="confirmReportPopUp_profileImage">
+                <div id="confirmReportPopUp_nameContainer">
+                    <h5 id="confirmReportPopUp_profileName">Jenny</h5>
+                    <h6 id="confirmReportPopUp_profileUsername">@fdsafdslai</h6>
                 </div>
             </div>
-            <button type="button" id="confirmReport_yesButton">Yes</button>
-            <button type="button" id="confirmReport_noButton">No</button>
+            <button type="button" id="confirmReportPopUp_yesButton">Yes</button>
+            <button type="button" id="confirmReportPopUp_noButton">No</button>
         </div>
     </section>
 
