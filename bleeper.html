@@ -8,7 +8,7 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Paul Stades">
     <link rel="stylesheet" href="bleeper.css"/>
-    <link rel="icon" type="image/x-icon" href="svgs/plus.svg">
+    <link rel="icon" type="image/x-icon" href="svgs/lightning.svg">
     <script src="bleeper.js" defer></script>
         <!-- GOOGLE FONTS -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,15 +35,7 @@
     <nav class="nav off" id="settingsNav">
         <button type="button" class="leftButton"><img src="svgs/profile_placeholder.svg"></button> 
         <button type="button" class="centerButton">Settings</button> 
-        <button type="button" class="rightButton"><img src="svgs/plus.svg"></button> 
-    </nav>
-
-    <!----------------PROFILE NAV--------------------->
-
-    <nav class="nav off" id="settingsNav">
-        <button type="button" class="leftButton"><img src="svgs/profile_placeholder.svg"></button> 
-        <button type="button" class="centerButton">Settings</button> 
-        <button type="button" class="rightButton"><img src="svgs/plus.svg"></button> 
+        <button type="button" class="rightButton"><img src="svgs/arrowright.svg"></button> 
     </nav>
 
     <!-------------------NAVBAR------------------------>
@@ -55,35 +47,62 @@
 
     <!-------------------LOGINPOPUP------------------------>
     <section class="loginPopUp off" id="loginPopUp">
-        <div id="loginPopUp_content">
-            <h2 id="loginPopUp_message">Log In or Sign Up in order to participate</h2>
-            <button type="button" id="loginPopUp_loginButton">Log In</button>
-            <button type="button" id="loginPopUp_signupButton">Sign Up</button>
+        <div class="content">
+            <h2 class="message">Log In or sign up in order to <ens class="inOrderTo">participate</ens></h2>
+            <button type="button" class="leftButton">Log in</button>
+            <button type="button" class="rightButton">Sign up</button>
         </div>
     </section>
 
-    <!----------------COMPOSE BLEEP--------------------->
-    <section class="composeArea off" id="composeArea">
-        <div class="composeBleep" id=composeBleep>
-            <img class="profileImage" src="pics/1.jpg" alt="Profile Image">
-            <header class="infoContainer">
-                <h5 class="profileName">You</h5>
-                <h6 class="profileUsername">@you</h6>
-                <time class="timestamp">In progress...</time>
-                <button class="topRightButton"><img src="svgs/trash.svg"></button>
-            </header>
-            <textarea id="textArea" rows="1" spellcheck="true" maxlength="300" placeholder="Your message here"></textarea>
-        </div>
+    <!----------------COMPOSE SECTION--------------------->
+        <section class="composeSection off" id="composeSection">
+            <div class="composeBleep" id=composeBleep>
+                <img class="profileImage" src="pics/1.jpg" alt="Profile Image">
+                <header class="infoContainer">
+                    <h5 class="profileName">You</h5>
+                    <h6 class="profileUsername">@you</h6>
+                    <time class="timeStamp">In progress...</time>
+                </header>
+                <textarea id="textArea" rows="1" spellcheck="true" maxlength="300" placeholder="Your message here"></textarea>
+                <div class="attachPreview" id="attachPreview">
+                    <button id="attachDeleteButton"><img src="svgs/cross.svg"></button>
+                    <img id="attachPreviewImage" src="pics/12.jpg">
+                    <input type="file" accept=".jpg, .png, .svg, .jpeg, .gif, .webp, .mp4" id="attachMediaInput">
+                </div>
+                <div class="actionbar">
+                    <button class="leftButton">
+                        <img src="svgs/erase.svg" class="leftButtonImage">
+                    </button>
+        
+                    <button class="centerButton">
+                        <img src="svgs/attach.svg" class="centerButtonImage">
+                    </button>
+        
+                    <button class="rightButton">
+                        <img src="svgs/message.svg" class="rightButtonImage">
+                    </button>
+                </div>
+            </div>
+
+            
+
+             <!----------------COMPOSE NAV--------------------->
+            <nav class="nav" id="composeNav">
+                <button type="button" class="leftButton"><img src="svgs/arrowdown.svg"></button> 
+                <button type="button" class="centerButton">300 characters left</button> 
+                <button type="button" class="rightButton"><img src="svgs/arrowright.svg"></button> 
+            </nav>
+        </section>
 
        <!---------------ERASE WARNING--------------------->
         
        <section class="eraseWarning off" id="eraseWarning">
-        <div class="content">
-            <h2 class="message">Erase message?</h2>
-            <button type="button" class="leftButton">Yes</button>
-            <button type="button" class="rightButton">No</button>
-        </div>
-    </section>
+            <div class="content">
+                <h2 class="message">Erase message?</h2>
+                <button type="button" class="leftButton">Yes</button>
+                <button type="button" class="rightButton">No</button>
+            </div>
+        </section>
 
         <!----------------SEND WARNING--------------------->
 
@@ -95,13 +114,7 @@
             </div>
         </section>
     </section>
-
-    <!----------------COMPOSE NAV--------------------->
-    <nav class="nav off" id="composeNav">
-        <button type="button" class="leftButton"><img src="svgs/arrowdown.svg"></button> 
-        <button type="button" class="centerButton">300 characters left</button> 
-        <button type="button" class="rightButton"><img src="svgs/arrowright.svg"></button> 
-    </nav>
+    
 
     <!----------------BLOCK POPUP----------------->
     <section class="blockPopUp off" id="blockPopUp">
@@ -158,46 +171,46 @@
     <!------------------BLEEPS-------------------->
     <main class="bleepList" id="bleepList">
 
-        <!-- <div class="bleep" id=bleep${i}>
-            <img class="profileImage" src="pics/10.jpg" alt="Profile Image">
+        <!-- <div class="bleep" id=bleep${b}>
+            <img class="profileImage" alt="Profile Image">
             <header class="infoContainer">
-                <h5 class="profileName">Johhny Whatever</h5>
-                <h6 class="profileUsername">@dsaocfna984</h6>
-                <time class="timestamp">1380j18014</time>
+                <h5 class="profileName"></h5>
+                <h6 class="profileUsername"></h6>
+                <time class="timeStamp"></time>
                 <button class="topRightButton"><img src="svgs/report_off.svg"></button>
             </header>
             <div class="topRightPopUp off">
                 <button class="blockButton">Block</button>
                 <button class="reportButton">Report</button>
             </div>
-    
+        
             <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis atque, molestias laudantium omnis suscipit cumque delectus, tempore doloribus tempora ut nemo, sapiente mollitia! Sit, facilis.</p>
             
             <div class="actionbar">
                 <button class="shareButton">
-                    <label for="shares" class="shareCounter">123+</label>
-                    <img src="svgs/share_off.svg" class="shareButtonImage">
+                    <label for="shares" class="sharesCounter"></label>
+                    <img src="svgs/share.svg" class="shareButtonImage">
                 </button>
-    
+        
                 <button class="commentButton">
-                    <label for="comments" class="commentCounter">56</label>
-                    <img src="svgs/comment_off.svg" class="commentButtonImage">
+                    <label for="comments" class="commentsCounter"></label>
+                    <img src="svgs/comment.svg" class="commentButtonImage">
                 </button>
-    
+        
                 <button class="likeButton">
-                    <label for="likes" class="likeCounter">5K</label>
-                    <img src="svgs/like_off.svg" class="likeButtonImage">
+                    <label for="likes" class="likesCounter"></label>
+                    <img src="svgs/lightning.svg" class="likeButtonImage">
                 </button>
             </div>
         </div>
 
-            <section class="commentsSection" id="commentsSection${i}">
-                <div class="commentsSectionButtons">
-                <button class="hideButton">Hide</button>
-                <button class="moreButton">More >></button>
-                </div>
-            </section>
-             -->
+        <section class="commentsSection" id="commentsSection${i}">
+            <div class="commentsSectionButtons">
+            <button class="hideButton">Hide</button>
+            <button class="moreButton">More >></button>
+            </div>
+        </section> -->
     </main>
+    <main class="bleepList off" id="bleepList2"></main>
 </body>
 </html>
