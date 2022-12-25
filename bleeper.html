@@ -8,7 +8,7 @@
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="Paul Stades">
     <link rel="stylesheet" href="bleeper.css"/>
-    <link rel="icon" type="image/x-icon" href="svgs/lightning.svg">
+    <link rel="icon" type="image/x-icon" href="svgs/share.svg">
     <script src="bleeper.js" defer></script>
         <!-- GOOGLE FONTS -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,14 +20,13 @@
 <body>
     <!-------------------SETTINGS---------------------->
     <section class="settings off" id="settings">
-        <ul class="list" id="list">
-            <li>Account settings</li>
-            <li>Block list</li>
-            <li>Language</li>
-            <li>Dark mode</li>
-            <li>Clear local storage</li>
-            <li>About</li>
-        </ul>
+            <button id="accountSettings">Account settings</button>
+            <button id="blockList">Block list</button>
+            <button id="language">Language</button>
+            <button id="appearance">Appearance</button>
+            <button id="logOut">Log out</button>
+            <button id="clearLS">Clear local storage</button>
+            <button id="about">About</button>
     </section>
 
     <!----------------SETTINGS NAV--------------------->
@@ -46,12 +45,44 @@
     </nav>
 
     <!-------------------LOGINPOPUP------------------------>
-    <section class="loginPopUp off" id="loginPopUp">
-        <div class="content">
-            <h2 class="message">Log In or sign up in order to <ens class="inOrderTo">participate</ens></h2>
-            <button type="button" class="leftButton">Log in</button>
-            <button type="button" class="rightButton">Sign up</button>
+    <section class="popup loginSignup off" id="loginSignup">
+        <div class="container">
+            <h2 class="message">Log in or sign up <br> in order to <ens id="insert">participate</ens></h2>
+            <h3 class="hint">(You can enter a fake email address)</h3>
+            <button type="button" class="button leftButton">Log in</button>
+            <button type="button" class="button rightButton">Sign up</button>
         </div>
+    </section>
+
+    <!-----------------SIGNUP SECTION------------------------>
+    <section class="popup signupSection off" id="signupSection">
+        <form class="container">
+            <label for="inputEmail">Email</label>
+            <input type="email" id="inputEmail" maxlength="35" required>
+            <label for="inputPassword">Password</label>
+            <input type="password" id="inputPassword" placeholder="Create a password" maxlength="35" required>
+            <label for="inputName">Name</label>
+            <input type="text" id="inputName" maxlength="35" required>
+            <label for="inputUsername">Username</label>
+            <input type="text" id="inputUsername" maxlength="25" required>
+            <button class="button leftButton"></button>
+            <input type="submit" class="button rightButton" value="Continue"></input
+        </form>
+    </section>
+
+    <!-----------------IMAGE SECTION------------------------>
+    <section class="popup imageSection off" id="imageSection">
+        <form class="container">
+            <button for="imageInput" id="imageLabel">Upload a profile picture</button>
+            <input type="file" accept=".jpg, .jpeg, .png, .svg" id="imageInput" required>
+            <div class="profileDetails">
+                <img alt="Profile Image">
+                <span class="name"></span>
+                <span class="username"></span>
+            </div>
+            <button type="button" class="button leftButton">Later</button>
+            <input type="submit" class="button rightButton" value="Go!"></input>
+        </form>
     </section>
 
     <!----------------COMPOSE SECTION--------------------->
@@ -64,9 +95,9 @@
                     <time class="timeStamp">In progress...</time>
                 </header>
                 <textarea id="textArea" rows="1" spellcheck="true" maxlength="300" placeholder="Your message here"></textarea>
-                <div class="attachPreview" id="attachPreview">
+                <div class="attachPreview off" id="attachPreview">
                     <button id="attachDeleteButton"><img src="svgs/cross.svg"></button>
-                    <img id="attachPreviewImage" src="pics/12.jpg">
+                    <img id="attachPreviewImage">
                     <input type="file" accept=".jpg, .png, .svg, .jpeg, .gif, .webp, .mp4" id="attachMediaInput">
                 </div>
                 <div class="actionbar">
@@ -79,7 +110,7 @@
                     </button>
         
                     <button class="rightButton">
-                        <img src="svgs/message.svg" class="rightButtonImage">
+                        <img src="svgs/send.svg" class="rightButtonImage">
                     </button>
                 </div>
             </div>
@@ -96,45 +127,44 @@
 
        <!---------------ERASE WARNING--------------------->
         
-       <section class="eraseWarning off" id="eraseWarning">
-            <div class="content">
+       <section class="popup erasePopup off" id="erasePopup">
+            <div class="container">
                 <h2 class="message">Erase message?</h2>
-                <button type="button" class="leftButton">Yes</button>
-                <button type="button" class="rightButton">No</button>
+                <button type="button" class="button leftButton">Yes</button>
+                <button type="button" class="button rightButton">No</button>
             </div>
         </section>
 
         <!----------------SEND WARNING--------------------->
 
-        <section class="sendWarning off" id="sendWarning">
-            <div id="sendWarning_content">
+        <section class="popup sendWarning off" id="sendWarning">
+            <div class="container">
                 <h2 id="sendWarning_message">Send message?</h2>
-                <button type="button" id="sendWarning_yesButton">Yes</button>
-                <button type="button" id="sendWarning_noButton">No</button>
+                <button type="button" class="button button1">Yes</button>
+                <button type="button" class="button button2">No</button>
             </div>
         </section>
     </section>
     
 
     <!----------------BLOCK POPUP----------------->
-    <section class="blockPopUp off" id="blockPopUp">
-        <div class="content">
+    <section class="popup blockSection off" id="blockSection">
+        <div class="container">
             <h2 class="message">Block this user?</h2>
-            <div class="accountInfo">
-                <img src="" alt="Profile Image" class="profileImage">
-                <div class="nameContainer">
-                    <h5 class="profileName">dsafdsafdsa</h5>
-                    <h6 class="profileUsername">fdsafdsa</h6>
-                </div>
+            <div class="profileDetails">
+                <img alt="Profile Image">
+                <span class="name"></span>
+                <span class="username"></span>
             </div>
-            <button type="button" class="leftButton">Yes</button>
-            <button type="button" class="rightButton">No</button>
+            <p class="explanation">Blocking this user will prevent you from seeing their profile, bleeps and mentions of them, as well as forbidding them from interacting with you in any way.</p>
+            <button type="button" class="button leftButton">No</button>
+            <button type="button" class="button rightButton">Yes</button>
         </div>
     </section>
 
-    <!---------------REPORT POPUP----------------->
-    <section class="reportPopUp off" id="reportPopUp">
-        <fieldset class="content">
+    <!---------------REPORT SECTION----------------->
+    <section class="popup reportSection off" id="reportSection">
+        <fieldset class="container">
             <h2 class="message">Report reason:</h2>
             <select class="form">
                 <option value="spam">Spam</option>
@@ -147,24 +177,22 @@
                 <option value="animal abuse">Animal abuse</option>
                 <option value="promoting terrorism">Promotes terrorism</option>
             </select>
-            <button type="button" class="leftButton">Confirm</button>
-            <button type="button" class="rightButton">Cancel</button>
+            <button type="button" class="button leftButton">Cancel</button>
+            <button type="button" class="button rightButton">Confirm</button>
         </fieldset>
     </section>
 
-    <!----------------CONFIRM REPORT POPUP----------------->
-    <section class="confirmReportPopUp off" id="confirmReportPopUp">
-        <div class="content">
+    <!----------------CONFIRM REPORT SECTION----------------->
+    <section class="popup confirmReportSection off" id="confirmReportSection">
+        <div class="container">
             <h2 class="message">Are you sure you want to report this user for <strong id="reason">reason</strong>?<br> False reports will be prosecuted</h2>
-            <div class="accountInfo">
-                <img src="" alt="Profile Image" class="profileImage">
-                <div class="nameContainer">
-                    <h5 class="profileName">Jenny</h5>
-                    <h6 class="profileUsername">@fdsafdslai</h6>
-                </div>
+            <div class="profileDetails">
+                <img alt="Profile Image">
+                <span class="name"></span>
+                <span class="username"></span>
             </div>
-            <button type="button" class="leftButton">Yes</button>
-            <button type="button" class="rightButton">No</button>
+            <button type="button" class="button leftButton">No</button>
+            <button type="button" class="button rightButton">Yes</button>
         </div>
     </section>
 
@@ -179,7 +207,7 @@
                 <time class="timeStamp"></time>
                 <button class="topRightButton"><img src="svgs/report_off.svg"></button>
             </header>
-            <div class="topRightPopUp off">
+            <div class="topRightPopup off">
                 <button class="blockButton">Block</button>
                 <button class="reportButton">Report</button>
             </div>
