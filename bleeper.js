@@ -1214,15 +1214,37 @@ function commentsSectionTemplate(b) {
 
 // -------------------------CLASSES-----------------------------
 
-class Profile {
-    constructor (email, password, name, username) {
-        this.email = email
-        this.password = password
-        this.name = name
-        this.username = username
-        this.image
-        this.bleepCount = 0
-        this.bleep = []
+class LOCAST {
+    add(code, value) {
+        let key
+        if (code === 'email') key = 'emailList'
+        if (code === 'password') key = 'passwordList'
+        if (code === 'name') key = 'nameList'
+        if (code === 'username') key = 'usernameList'
+        let list
+        if (!localStorage.getItem(key)) list = []
+        else list = localStorage.getItem(key).split(',')
+        list.push(value)
+        localStorage.setItem(key, list)
+    }
+}
+
+class Logged {
+    constructor() {
+    }
+    
+    get status() {
+        return localStorage.getItem('logged')
+    }
+
+    change() {
+        let logged = localStorage.getItem('logged')
+        console.log(logged)
+        if (!logged) {
+            localStorage.setItem('logged', true)
+        }else{
+            localStorage.setItem('logged', false)
+        }
     }
 }
 
@@ -1244,7 +1266,9 @@ class Settings extends Generic {
         this.about = this.itself.querySelector(`#about`)
 
         this.logOut.addEventListener('click', e => {
-            login.change()
+            console.log(logged.status)
+            logged.change()
+            console.log(logged.status)
         })
         this.clearLS.addEventListener('click', e => {
             localStorage.clear()
@@ -1432,52 +1456,33 @@ class MainNav extends Navbar {
         super(identifier)
 
         this.leftButton.addEventListener('click', e => {
-            for (let i=0; i<15; i++) {
-                if (login.status) {
-                    toggleDisplayNoneOf(bleepList.itself, settings.itself, settingsNav.itself)
-                }else{
-                    displayLoginPopup(`adjust settings`)
-                }
+            if (logged.status === true) {
+                console.log('logged')
+                toggleDisplayNoneOf(bleepList.itself, settings.itself, settingsNav.itself)
+            }else{
+                console.log('not logged')
+                displayLoginPopup(`adjust settings`)
             }
             
         })
         this.centerButton.addEventListener('click', e=> {
-            for (let i=0; i<15; i++) {
-                if (login.status) {
-                    toggleDisplayNoneOf(composeSection.itself)
-                    toggleBodyNoScroll()
-                }else{
-                    displayLoginPopup(`bleep out`)
-                }
+            if (logged.status === true) {
+                console.log('logged')
+                toggleDisplayNoneOf(composeSection.itself)
+                toggleBodyNoScroll()
+            }else{
+                console.log('not logged')
+                displayLoginPopup(`bleep out`)
             }
         })
         this.rightButton.addEventListener('click', e => {
-            for (let i=0; i<15; i++) {
-                if (login.status) {
-                    console.log('your profile')
-                }else{
-                    displayLoginPopup(`access your profile page`)
-                }
+            if (logged.status === true) {
+                console.log('logged')
+            }else{
+                console.log('not logged')
+                displayLoginPopup(`access your profile page`)
             }
         })
-    }
-}
-
-class Login {
-    constructor() {
-        localStorage.setItem('logged', false)
-    }
-    
-    get status() {
-        return localStorage.getItem('logged')
-    }
-
-    change() {
-        if (localStorage.getItem('logged')) {
-            localStorage.setItem('logged', false)
-        }else{
-            localStorage.setItem('logged', true)
-        }
     }
 }
 
@@ -1580,20 +1585,54 @@ class ErasePopup extends Popup {
     }
 }
 
+class LoginSection extends Popup {
+    constructor(identifier) {
+        super(identifier)
+        this.loginEmail = this.itself.querySelector(`#loginEmail`)
+        this.loginPassword = this.itself.querySelector(`#loginPassword`)
+        
+        this.leftButton.addEventListener('click', e => {
+            toggleDisplayNoneOf(this.itself)
+        })
+        this.rightButton.addEventListener('click', e => {
+            e.preventDefault()
+            this.verifyLogin() 
+        })
+    }
+
+    verifyLogin() {
+        console.log('start')
+        if (!localStorage.getItem('emailList')) { 
+            return false
+        }
+        let email = this.loginEmail.value.toString()
+        let emailList = localStorage.getItem('emailList').split(',')
+        let index = emailList.indexOf(email)
+        if (index === -1) return false 
+        // password
+        let password = this.loginPassword.value.toString()
+        let passwordList = localStorage.getItem('passwordList').split(',')
+        if (password !== passwordList[index])  {
+            return false
+        }
+        return true
+    }
+}
+
 class SignupSection extends Popup {
     constructor(identifier) {
         super(identifier)
-        this.inputEmail = this.itself.querySelector(`#inputEmail`)
-        this.inputPassword = this.itself.querySelector(`#inputPassword`)
-        this.inputName = this.itself.querySelector(`#inputName`)
-        this.inputUsername = this.itself.querySelector(`#inputUsername`)
+        this.signupEmail = this.itself.querySelector(`#signupEmail`)
+        this.signupPassword = this.itself.querySelector(`#signupPassword`)
+        this.signupName = this.itself.querySelector(`#signupName`)
+        this.signupUsername = this.itself.querySelector(`#signupUsername`)
 
         this.rightButton.addEventListener('click', e => {
             e.preventDefault()
             if (this.validation()) {
                 createProfile()
-                imageSection.name.innerText = this.inputName.value
-                imageSection.username.innerText = '@'+this.inputUsername.value
+                imageSection.name.innerText = this.signupName.value.toString()
+                imageSection.username.innerText = '@'+this.signupUsername.value.toString()
                 toggleDisplayNoneOf(this.itself, imageSection.itself)
             }else{
             console.log('Validation failed')
@@ -1612,91 +1651,92 @@ class SignupSection extends Popup {
     }
 
     emailValidation() {
-        const input = this.inputEmail.value.toString().toLowerCase()
+        const input = this.signupEmail.value.toString().toLowerCase()
         const format = /.{2,}@.{2,}\..{2,}/
         const regex = /[^\w0-9@\.-]/
         const atSplit = input.split('@')
+        const localEmailList = localStorage.getItem('emailList')
         if (!input) {
-            this.inputEmail.setAttribute('placeholder', `Please, enter your email`)
-            return false
+            failEmailValidation(`Please, enter your email`)
         }
         if (input.length < 5) {
-            invalidate()
+            failEmailValidation()
+            return false
         }
         if (!format.test(input)) {
-            invalidate()
+            failEmailValidation()
+            return false
         }
         if (regex.test(input)) {
-            invalidate()
+            failEmailValidation()
+            return false
         }
         if (atSplit.length > 2) { // testing for excess @
-            invalidate()
+            failEmailValidation()
+            return false
         }
         if (atSplit[1].split('.').length > 2) { // testing for excess . after @
-            invalidate()
+            failEmailValidation()
+            return false
         }
-        for (let i=0; i<15; i++) {
-            if (input === localStorage.getItem(`profile${i}email`)) {
-                this.inputEmail.value = null
-                this.inputEmail.setAttribute('placeholder', `This email is already in use`)
-                return false
-            }
+        if (localEmailList && localEmailList.indexOf(input) !== -1) {
+            failEmailValidation(`This email is already in use`)
+            return false
         }
-        console.log('true')
         return true
     }
 
     passwordValidation() {
-        const input = this.inputPassword.value.toString()
+        const input = this.signupPassword.value.toString()
         if (!input) {
-            this.inputPassword.setAttribute('placeholder', `Please, enter a password`)
+            failPasswordValidation(`Please, enter a password`)
             return false
         }
         if (input.length < 5) {
-            this.inputPassword.value = null
-            this.inputPassword.setAttribute('placeholder', `This password is too short`)
+            failPasswordValidation(`This password is too short`)
             return false
         }
         return true
     }
 
     nameValidation() {
-        const input = this.inputName.value.toString()
+        const input = this.signupName.value.toString()
         if (!input) {
-            this.inputName.setAttribute('placeholder', `Please, choose a name`)
+            failNameValidation(`Please, choose a name`)
             return false
         }
         if (input.length < 2) {
-            this.inputName.value = null
-            this.inputName.setAttribute('placeholder', `This name is too short`)
+            failNameValidation(`This name is too short`)
             return false
         }
         return true
     }
 
     usernameValidation() {
-        const input = this.inputUsername.value.toString()
+        const input = this.signupUsername.value.toString()
         const regex = /[^\w|\.|\-]|' '/
+        const localUsernameList = localStorage.getItem('usernameList')
         if (!input) {
-            this.inputUsername.setAttribute('placeholder', `Please, choose a username`)
+            failUsernameValidation(`Please, choose a username`)
             return false
         }
         if (input.length < 2) {
-            this.inputUsername.value = null
-            this.inputUsername.setAttribute('placeholder', `This username is too short`)
+            failUsernameValidation(`This username is too short`)
             return false
         }
         if (regex.test(input)) {
-            this.inputUsername.value = null
-            this.inputUsername.setAttribute('placeholder', `Can't use forbidden characters`)
+            failUsernameValidation(`Can't use forbidden characters`)
             return false
         }
         for (let i=0; i<bleepArray.length; i++) { 
-            if (input === localStorage.getItem(`profile${i}username`) || input === bleepArray[i].username) {
-                this.inputUsername.value = null
-                this.inputUsername.setAttribute('placeholder', `This username is already in use`)
+            if (input === bleepArray[i].username) {
+                failUsernameValidation(`This username is already in use`)
                 return false
             }
+        }
+        if (localUsernameList && localUsernameList.indexOf(input) !== -1) {
+            failUsernameValidation(`This username is already in use`)
+            return false
         }
         return true
     }
@@ -1753,7 +1793,7 @@ class LoginSignup extends Popup {
         this.insert = this.itself.querySelector(`#insert`)
 
         this.leftButton.addEventListener('click', e=>{
-            console.log('LOGIN')
+            toggleDisplayNoneOf(this.itself, loginSection.itself)
         })
         this.rightButton.addEventListener('click', e=>{
             toggleDisplayNoneOf(this.itself, signupSection.itself)
@@ -1817,24 +1857,16 @@ function toggleDisplayNoneOf() {
 }
 
 function createProfile() {
-    profile[pi] = new Profile(
-        this.inputEmail.value,
-        this.inputPassword.value,
-        this.inputName.value,
-        this.inputUsername.value
-    )
-    localStorage.setItem(`loggedIn`, true)
-    localStorage.setItem(`profile${pi}email`, profile[pi].email)
-    localStorage.setItem(`profile${pi}password`, profile[pi].password)
-    localStorage.setItem(`profile${pi}name`, profile[pi].name)
-    localStorage.setItem(`profile${pi}username`, profile[pi].username)
-    pi++
-}
+    const email = this.signupEmail.value
+    const password = this.signupPassword.value
+    const name = this.signupName.value
+    const username = this.signupUsername.value
 
-function invalidate() {
-    this.inputEmail.value = null
-    this.inputEmail.setAttribute('placeholder', `Please, enter a valid email`)
-    return false
+    locast.add('email', email)
+    locast.add('password', password)
+    locast.add('name', name)
+    locast.add('username', username)
+    logged.change()
 }
 
 function displayLoginPopup(text) {
@@ -1843,8 +1875,33 @@ function displayLoginPopup(text) {
     loginSignup.insert.innerText = text
 }
 
+function verifyLogin() {
+ 
+}
+
+function failEmailValidation(message = `Please, enter a valid email`) {
+    this.signupEmail.value = null
+    this.signupEmail.setAttribute('placeholder', message)
+}
+
+function failPasswordValidation(message) {
+    this.signupPassword.value = null
+    this.signupPassword.setAttribute('placeholder', message)
+}
+
+function failNameValidation(message) {
+    this.signupName.value = null
+    this.signupName.setAttribute('placeholder', message)
+}
+
+function failUsernameValidation(message) {
+    this.signupUsername.value = null
+    this.signupUsername.setAttribute('placeholder', message)
+}
+
 
 // ---------------ELEMENTS
+const loginSection = new LoginSection(`#loginSection`)
 const bleepList = new BleepList('#bleepList');
 const bleepList2 = new BleepList(`#bleepList2`);
 const mainNav = new MainNav(`#mainNav`);
@@ -1860,9 +1917,8 @@ const settingsNav = new SettingsNav(`#settingsNav`);
 const loginSignup = new LoginSignup(`#loginSignup`)
 const signupSection = new SignupSection(`#signupSection`)
 const imageSection = new ImageSection(`#imageSection`)
-const login = new Login
-const profile = []
-let pi = 0 //profile index
+const logged = new Logged
+const locast = new LOCAST //local storage
 let timeLimit;
 
 // ----------------------------ONLOAD-----------------------------
