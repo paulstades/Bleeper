@@ -80,11 +80,6 @@ button {
 .popup .button {
     background: rgb(50, 50, 50);
     padding: 1rem;
-    grid-column: 1;
-}
-
-.popup .button:last-child {
-    grid-column: 2;
 }
 
 /* -----------------------------------
@@ -143,7 +138,6 @@ button {
 .settings button {
     padding: 1rem;
     width: 100%;
-    outline: 1px solid red;
 }
 
 
@@ -439,7 +433,6 @@ button {
     align-content: space-between;
 }
 
-
 .profileName {
     font-weight: bold;
     overflow: clip;
@@ -468,34 +461,25 @@ button {
 }
 
 
-.text {
-    grid-column: 1/ span 2;
+.textField {
+    position: relative;
+    grid-column: 1/ 3;
     grid-row: 2;
 }
 
 /* --------BLEEP REPORT OPTIONS-------- */
 
-.topRightPopup {
-    position: absolute;
+.hiddenMenu {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    top: 0;
-    right: 0;
-    text-align: center;
-    outline: 0.1rem solid rgb(50, 50, 50);
+    gap: 1rem;
     background: rgb(30, 30, 30);
+}
+
+.hiddenMenu button{
+    background: rgb(50, 50 ,50);
     border-radius: 0.5rem;
-    box-shadow: 0 0 5px black;
-}
-
-.blockButton {
-    margin-top: 2.5rem;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-}
-
-.reportButton {
-    padding: 0.5rem 1rem 1rem 1rem;
+    padding: 1rem;
 }
 
 .attachments {
@@ -526,6 +510,7 @@ button {
 
 .actionbar button {
     display: flex;
+    gap: 0.25rem;
     justify-content: center;
     font-size: 0.8rem;
     font-weight: bold;
@@ -534,10 +519,6 @@ button {
 
 .actionbar label {
     text-align: end;
-}
-
-.actionbar img {
-    margin-left: 0.25rem;
 }
 
 /* --------TOGGLES-------- */
@@ -574,4 +555,27 @@ button {
 .moreButton {
     padding: 0.5rem;
     width: 25%;
+}
+
+.svg {
+    fill: #AFAFAF;
+    width: 1rem;
+    height: 1rem;
+}
+
+.topRightButton .svg2 {
+    fill: #CC0000;
+}
+
+.infobox {
+    z-index: 200;
+    position: fixed;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 75vw;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    backdrop-filter: blur(5px);
 }

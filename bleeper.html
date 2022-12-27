@@ -44,13 +44,13 @@
         <button type="button" class="rightButton"><img src="svgs/profile_placeholder.svg"></button> 
     </nav>
 
-    <!-------------------LOGINPOPUP------------------------>
+    <!-------------------LOGINSIGNUP------------------------>
     <section class="popup loginSignup off" id="loginSignup">
         <div class="container">
             <h2 class="message">Log in or sign up <br> in order to <ens id="insert">participate</ens></h2>
             <h3 class="hint">(You can enter a fake email address)</h3>
-            <button type="button" class="button leftButton">Log in</button>
-            <button type="button" class="button rightButton">Sign up</button>
+            <button type="button" class="button button1">Log in</button>
+            <button type="button" class="button button2">Sign up</button>
         </div>
     </section>
 
@@ -61,8 +61,7 @@
             <input type="email" id="loginEmail" maxlength="35" required>
             <label for="loginPassword">Password</label>
             <input type="password" id="loginPassword" maxlength="35" required>
-            <button class="button leftButton">Go back</button>
-            <input type="submit" class="button rightButton" value="Log in"></input>
+            <button type="submit" class="button button1" value="Log in"></button>
         </form>
     </section>
 
@@ -77,8 +76,7 @@
             <input type="text" id="signupName" maxlength="35" required>
             <label for="signupUsername">Username</label>
             <input type="text" id="signupUsername" maxlength="25" required>
-            <button class="button leftButton"></button>
-            <input type="submit" class="button rightButton" value="Continue"></input>
+            <button type="submit" class="button button1" value="Continue"></button>
         </form>
     </section>
 
@@ -92,8 +90,7 @@
                 <span class="name"></span>
                 <span class="username"></span>
             </div>
-            <button type="button" class="button leftButton">Later</button>
-            <input type="submit" class="button rightButton" value="Go!"></input>
+            <button type="submit" class="button button1" value="Go!"></but>
         </form>
     </section>
 
@@ -122,7 +119,7 @@
                     </button>
         
                     <button class="rightButton">
-                        <img src="svgs/send.svg" class="rightButtonImage">
+                        <img src="svgs/send.svg" class="button2Image">
                     </button>
                 </div>
             </div>
@@ -142,8 +139,7 @@
        <section class="popup erasePopup off" id="erasePopup">
             <div class="container">
                 <h2 class="message">Erase message?</h2>
-                <button type="button" class="button leftButton">Yes</button>
-                <button type="button" class="button rightButton">No</button>
+                <button type="button" class="button button1">Yes</button>
             </div>
         </section>
 
@@ -153,11 +149,12 @@
             <div class="container">
                 <h2 id="sendWarning_message">Send message?</h2>
                 <button type="button" class="button button1">Yes</button>
-                <button type="button" class="button button2">No</button>
             </div>
         </section>
-    </section>
     
+        <!----------------INFOBOX--------------------->
+        <span class="infobox off" id="infobox">
+        </span>
 
     <!----------------BLOCK POPUP----------------->
     <section class="popup blockSection off" id="blockSection">
@@ -168,9 +165,8 @@
                 <span class="name"></span>
                 <span class="username"></span>
             </div>
-            <p class="explanation">Blocking this user will prevent you from seeing their profile, bleeps and mentions of them, as well as forbidding them from interacting with you in any way.</p>
-            <button type="button" class="button leftButton">No</button>
-            <button type="button" class="button rightButton">Yes</button>
+            <p class="explanation">Blocking this user will prevent you from seeing their profile, bleeps and mentions of them, as well as restricting them from interacting with you in any way.</p>
+            <button type="button" class="button button1">Yes</button>
         </div>
     </section>
 
@@ -189,8 +185,7 @@
                 <option value="animal abuse">Animal abuse</option>
                 <option value="promoting terrorism">Promotes terrorism</option>
             </select>
-            <button type="button" class="button leftButton">Cancel</button>
-            <button type="button" class="button rightButton">Confirm</button>
+            <button type="button" class="button button1">Confirm</button>
         </fieldset>
     </section>
 
@@ -203,53 +198,96 @@
                 <span class="name"></span>
                 <span class="username"></span>
             </div>
-            <button type="button" class="button leftButton">No</button>
-            <button type="button" class="button rightButton">Yes</button>
+            <button type="button" class="button button1">Yes</button>
         </div>
     </section>
 
     <!------------------BLEEPS-------------------->
     <main class="bleepList" id="bleepList">
 
-        <!-- <div class="bleep" id=bleep${b}>
-            <img class="profileImage" alt="Profile Image">
-            <header class="infoContainer">
-                <h5 class="profileName"></h5>
-                <h6 class="profileUsername"></h6>
-                <time class="timeStamp"></time>
-                <button class="topRightButton"><img src="svgs/report_off.svg"></button>
+        <!-- <div class='bleep' id=bleep${bi}>
+            <img class='profileImage' alt='Profile Image'>
+            <header class='infoContainer'>
+                <h5 class='profileName'></h5>
+                <h6 class='profileUsername'></h6>
+                <time class='timeStamp'></time>
+                <button class='topRightButton'>
+                    <svg class="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    viewBox="0 0 600 600" xml:space="preserve">
+                        <path class="svg1" d="M300,0C134.3,0,0,134.3,0,300s134.3,300,300,300s300-134.3,300-300S465.7,0,300,0z M300,525
+                        C175.7,525,75,424.3,75,300S175.7,75,300,75s225,100.7,225,225S424.3,525,300,525z"/>
+                        <path class="svg2 off" d="M600,300c0,165.7-134.3,300-300,300S0,465.7,0,300S134.3,0,300,0S600,134.3,600,300z"/>
+                    </svg>
+                </button>
             </header>
-            <div class="topRightPopup off">
-                <button class="blockButton">Block</button>
-                <button class="reportButton">Report</button>
+            <div class='blockField off'>
+                <button class='blockButton'>Block</button>
+                <button class='reportButton'>Report</button>
             </div>
         
-            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis atque, molestias laudantium omnis suscipit cumque delectus, tempore doloribus tempora ut nemo, sapiente mollitia! Sit, facilis.</p>
+            <p class='text'></p>
             
-            <div class="actionbar">
-                <button class="shareButton">
-                    <label for="shares" class="sharesCounter"></label>
-                    <img src="svgs/share.svg" class="shareButtonImage">
+            <div class='actionbar'>
+                <button class='leftButton'>
+                    <label class='sharesCounter'></label>
+                    <svg class="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    viewBox="0 0 600 600" xml:space="preserve">
+                        <path class="svg1" d="M0,300c0,82.8,67.2,150,150,150c42.8,0,81.4-17.9,108.7-46.7l117.8,65.5c-1,6.1-1.6,12.3-1.6,18.7
+                        c0,62.1,50.4,112.5,112.5,112.5S600,549.6,600,487.5S549.6,375,487.5,375c-28.6,0-54.7,10.7-74.5,28.2l-117.8-65.4
+                        c3.1-12.1,4.8-24.7,4.8-37.8s-1.7-25.7-4.8-37.8L413,196.8c19.8,17.6,45.9,28.2,74.5,28.2c62.1,0,112.5-50.4,112.5-112.5
+                        S549.6,0,487.5,0S375,50.4,375,112.5c0,6.4,0.5,12.7,1.6,18.7l-117.8,65.5C231.4,167.9,192.8,150,150,150C67.2,150,0,217.2,0,300z
+                        M450,112.5c0-20.7,16.8-37.5,37.5-37.5S525,91.8,525,112.5S508.2,150,487.5,150S450,133.2,450,112.5z M450,487.5
+                        c0-20.7,16.8-37.5,37.5-37.5s37.5,16.8,37.5,37.5S508.2,525,487.5,525S450,508.2,450,487.5z M75,300c0-41.4,33.6-75,75-75
+                        s75,33.6,75,75s-33.6,75-75,75S75,341.4,75,300z"/>
+                        <path class="svg2 off" d="M600,487.5c0,62.1-50.5,112.5-112.6,112.5s-112.5-50.4-112.5-112.5c0-6.4,0.6-12.6,1.6-18.7l-117.8-65.5
+                        C231.4,432.1,192.8,450,150,450C67.2,450,0,382.8,0,300s67.2-150,150-150c42.8,0,81.4,17.9,108.8,46.7l117.8-65.5
+                        c-1.1-6-1.6-12.3-1.6-18.7C375,50.4,425.4,0,487.5,0S600,50.4,600,112.5S549.6,225,487.5,225c-28.6,0-54.7-10.6-74.5-28.2
+                        l-117.8,65.4c3.1,12.1,4.8,24.7,4.8,37.8s-1.7,25.7-4.8,37.8L413,403.2c19.8-17.5,45.9-28.2,74.5-28.2
+                        C549.6,375,600,425.4,600,487.5z"/>
+                    </svg>
                 </button>
         
-                <button class="commentButton">
-                    <label for="comments" class="commentsCounter"></label>
-                    <img src="svgs/comment.svg" class="commentButtonImage">
+                <button class='centerButton'>
+                    <label class='commentsCounter'></label>
+                    <svg class="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                            viewBox="0 0 600 600" xml:space="preserve">
+                                <g class="svg1">
+                                    <path d="M525,56.3H75c-41.4,0-75,33.6-75,75v412.5c0,20.7,16.8,37.5,37.5,37.5c8.4,0,16.2-2.8,22.5-7.5l0.1-0.1
+                                    L75,562.5l64.9-48.6c0.1-0.1,0.3-0.2,0.4-0.3c6.2-4.6,13.9-7.3,22.2-7.3H525c41.4,0,75-33.6,75-75V131.3
+                                    C600,89.8,566.4,56.3,525,56.3z M525,412.5c0,10.4-8.4,18.8-18.8,18.8H137.5c-8.3,0-16,2.7-22.3,7.3c-0.1,0.1-0.2,0.2-0.3,0.3
+                                    L90,457.5c-1.6,1.2-3.5,1.9-5.6,1.9c-5.2,0-9.4-4.2-9.4-9.4V150c0-10.4,8.4-18.8,18.8-18.8h412.5c10.4,0,18.8,8.4,18.8,18.8
+                                    L525,412.5L525,412.5z"/>
+                                    <path d="M450,273.8c0,20.7-16.8,37.5-37.5,37.5h-225c-20.7,0-37.5-16.8-37.5-37.5s16.8-37.5,37.5-37.5h225
+                                    C433.2,236.3,450,253,450,273.8z"/>
+                                </g>
+                                <path class="svg2 off" d="M525,56.3H75c-41.4,0-75,33.6-75,75v412.5c0,20.7,16.8,37.5,37.5,37.5c8.4,0,16.2-2.8,22.5-7.5l0.1-0.1
+                                L75,562.5l64.9-48.6c0.1-0.1,0.3-0.2,0.4-0.3c6.2-4.6,13.9-7.3,22.2-7.3H525c41.4,0,75-33.6,75-75V131.3
+                                C600,89.8,566.4,56.3,525,56.3z M412.5,311.3h-225c-20.7,0-37.5-16.8-37.5-37.5s16.8-37.5,37.5-37.5h225
+                                c20.7,0,37.5,16.8,37.5,37.5S433.2,311.3,412.5,311.3z"/>
+                            </svg>
                 </button>
         
-                <button class="likeButton">
-                    <label for="likes" class="likesCounter"></label>
-                    <img src="svgs/lightning.svg" class="likeButtonImage">
+                <button class='rightButton'>
+                    <label class='likesCounter'></label>
+                    <svg class="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    viewBox="0 0 600 600" xml:space="preserve">
+                        <path class="svg1" d="M450,37.5c-44.5,0-84.5,19.4-112,50.2c-0.2,0.2-24,27-24,27c0,0-0.1,0.1-0.1,0.2c-3.4,3.8-8.4,6.1-13.8,6.1
+                        c-5.5,0-10.4-2.3-13.8-6.1c0-0.1-0.1-0.1-0.1-0.2c0,0-23.8-26.8-24-27c-27.5-30.8-67.5-50.2-112-50.2c-82.8,0-150,67.2-150,150
+                        c0,39.3,15.1,75,39.8,101.8L272,549.9c6.9,7.7,16.9,12.6,28,12.6c11.1,0,21.1-4.8,28-12.6l232.2-260.6
+                        c24.7-26.7,39.8-62.5,39.8-101.8C600,104.7,532.8,37.5,450,37.5z M506.1,237.3L506.1,237.3c-0.5,0.5-86.5,97.1-86.5,97.1L314,452.9
+                        c0,0-0.1,0.1-0.1,0.2c-3.4,3.8-8.4,6.1-13.8,6.1c-5.5,0-10.4-2.4-13.8-6.1c0-0.1-0.1-0.1-0.1-0.2L180.5,334.4
+                        c0,0-86.2-96.7-86.5-97.1c-27.5-31-24.7-78.4,6.3-105.9c30.9-27.4,78.1-24.7,105.6,6c0.1,0.1,0.2,0.2,0.2,0.3
+                        c0.1,0.1,0.1,0.2,0.2,0.3l65.7,73.8c6.9,7.7,16.9,12.6,28,12.6c11.1,0,21.1-4.8,28-12.6l65.9-74c0,0,0,0,0,0c0,0,0,0,0,0
+                        c27.5-30.9,74.9-33.7,105.8-6.2C530.8,158.9,533.6,206.3,506.1,237.3z"/>
+                        <path class="svg2 off" d="M600,187.5c0,39.3-15.1,75-39.8,101.8L328,549.9c-6.9,7.7-16.9,12.6-28,12.6s-21.1-4.8-28-12.6L39.8,289.3
+                        C15.1,262.5,0,226.8,0,187.5c0-82.8,67.2-150,150-150c44.5,0,84.5,19.4,112,50.2c0.2,0.2,24,27,24,27c0,0,0.1,0.1,0.1,0.2
+                        c3.4,3.8,8.4,6.1,13.8,6.1s10.4-2.4,13.8-6.1c0-0.1,0.1-0.1,0.1-0.2c0,0,23.9-26.8,24-27c27.5-30.8,67.5-50.2,112-50.2
+                        C532.8,37.5,600,104.7,600,187.5z"/>
+                    </svg>
                 </button>
             </div>
-        </div>
+        </div> -->
 
-        <section class="commentsSection" id="commentsSection${i}">
-            <div class="commentsSectionButtons">
-            <button class="hideButton">Hide</button>
-            <button class="moreButton">More >></button>
-            </div>
-        </section> -->
     </main>
     <main class="bleepList off" id="bleepList2"></main>
 </body>
