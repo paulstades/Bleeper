@@ -1,9 +1,0 @@
-{  
-"liveServer.settings.https":   
-{
-"enable": true, //set it true to enable the feature.  
-"cert": "C:\\Users\\oli\\localhost.pem", //full path of the certificate  
-"key": "C:\\Users\\oli\\localhost.key", //full path of the private key  
-"passphrase": "89915091p"  
-}  
-}
